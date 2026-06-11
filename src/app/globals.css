@@ -8,6 +8,8 @@
   --royal-blue: #1a237e;
   --navy-blue: #0d1b2a;
   --electric-blue: #00d4ff;
+  --teal: #00bcd4;
+  --marine: #006680;
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-bg-hover: rgba(255, 255, 255, 0.1);
@@ -115,16 +117,82 @@ body {
   background: #00d4ff !important;
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes caustic {
+  0% { transform: translateX(0) translateY(0) scale(1); }
+  33% { transform: translateX(30px) translateY(-20px) scale(1.1); }
+  66% { transform: translateX(-20px) translateY(30px) scale(0.95); }
+  100% { transform: translateX(0) translateY(0) scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes marineFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(0.5deg); }
+  75% { transform: translateY(3px) rotate(-0.5deg); }
+}
+
 @layer utilities {
   .perspective-1000 {
     perspective: 1000px;
+  }
+
+  .perspective-1200 {
+    perspective: 1200px;
   }
 
   .backface-hidden {
     backface-visibility: hidden;
   }
 
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
   .rotate-y-180 {
     transform: rotateY(180deg);
+  }
+
+  .marine-caustics {
+    background-image:
+      radial-gradient(ellipse at 20% 30%, rgba(0, 212, 255, 0.06) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 60%, rgba(0, 188, 212, 0.05) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, rgba(0, 150, 200, 0.04) 0%, transparent 30%);
+    background-size: 200% 200%;
+    animation: caustic 12s ease-in-out infinite;
+  }
+
+  .marine-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.03) 25%,
+      rgba(0, 212, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.03) 75%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  .card-3d {
+    transform: perspective(1000px);
+    transition: transform 0.3s ease;
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+  }
+
+  .animate-marine-float {
+    animation: marineFloat 6s ease-in-out infinite;
   }
 }

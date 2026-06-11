@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useCallback, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import CountdownSection from '@/components/Countdown'
@@ -11,21 +13,43 @@ import Gallery from '@/components/Gallery'
 import Music from '@/components/Music'
 import RSVP from '@/components/RSVP'
 import Footer from '@/components/Footer'
+import ParticlesBackground from '@/components/ParticlesBackground'
+
+const EnvelopeScreen = dynamic(
+  () => import('@/components/EnvelopeScreen'),
+  { ssr: false }
+)
 
 export default function Home() {
+  const [showMain, setShowMain] = useState(false)
+
+  const handleEnvelopeOpen = useCallback(() => {
+    setShowMain(true)
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = showMain ? '' : 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [showMain])
+
   return (
-    <main className="relative min-h-screen">
-      <Navbar />
-      <Hero />
-      <CountdownSection />
-      <EventInfo />
-      <DressCode />
-      <SpecialMessage />
-      <Trivia />
-      <Gallery />
-      <Music />
-      <RSVP />
-      <Footer />
-    </main>
+    <>
+      {!showMain && <EnvelopeScreen onOpen={handleEnvelopeOpen} />}
+
+      <main className="relative min-h-screen marine-caustics">
+        <ParticlesBackground variant="marine" />
+        <Navbar />
+        <Hero />
+        <CountdownSection />
+        <EventInfo />
+        <DressCode />
+        <SpecialMessage />
+        <Trivia />
+        <Gallery />
+        <Music />
+        <RSVP />
+        <Footer />
+      </main>
+    </>
   )
 }

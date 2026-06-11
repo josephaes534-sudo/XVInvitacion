@@ -53,6 +53,9 @@ module.exports = {
         'float-delayed': 'float 6s ease-in-out 3s infinite',
         'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
         'spin-slow': 'spin 20s linear infinite',
+        'twinkle': 'twinkle 3s ease-in-out infinite',
+        'shimmer': 'shimmer 6s ease-in-out infinite',
+        'marine-drift': 'marine-drift 8s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -62,6 +65,19 @@ module.exports = {
         'glow-pulse': {
           '0%, 100%': { boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' },
           '50%': { boxShadow: '0 0 40px rgba(0, 212, 255, 0.6)' },
+        },
+        twinkle: {
+          '0%, 100%': { opacity: '0.2', transform: 'scale(0.8)' },
+          '50%': { opacity: '1', transform: 'scale(1.2)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        'marine-drift': {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '25%': { transform: 'translateY(-8px) rotate(0.5deg)' },
+          '75%': { transform: 'translateY(4px) rotate(-0.5deg)' },
         },
       },
     },
