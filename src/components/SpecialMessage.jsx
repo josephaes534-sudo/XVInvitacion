@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { IoHeartOutline, IoQuote } from 'react-icons/io5'
+import { IoHeartOutline } from 'react-icons/io5'
+import { FaQuoteLeft } from 'react-icons/fa'
 import eventConfig from '@/config/event'
 
 export default function SpecialMessage() {
@@ -35,7 +36,7 @@ export default function SpecialMessage() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="glass p-8 md:p-12 relative"
         >
-          <IoQuote className="absolute top-4 left-4 text-electric-500/20 text-6xl" />
+          <FaQuoteLeft className="absolute top-4 left-4 text-electric-500/20 text-6xl" />
 
           <div className="relative z-10">
             <motion.p
@@ -71,3 +72,4 @@ export default function SpecialMessage() {
     </section>
   )
 }
+
