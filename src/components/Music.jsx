@@ -43,7 +43,7 @@ export default function Music() {
 
   return (
     <section className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-royal-700/10 to-navy-900/0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a1628]/80 to-transparent pointer-events-none" />
 
       <div className="relative max-w-md mx-auto">
         <motion.div
@@ -54,9 +54,9 @@ export default function Music() {
           className="text-center mb-10"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <IoMusicalNotes className="text-electric-500 text-xl" />
-            <span className="text-electric-500/80 text-sm tracking-[0.3em] uppercase font-light">
-              Música
+            <IoMusicalNotes className="text-[#00d4ff] text-xl" />
+            <span className="text-[#00d4ff]/80 text-sm tracking-[0.3em] uppercase font-light">
+              M&uacute;sica
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold">
@@ -75,33 +75,33 @@ export default function Music() {
             <motion.div
               animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
               transition={isPlaying ? { duration: 8, repeat: Infinity, ease: 'linear' } : {}}
-              className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-electric-500/20 to-royal-500/20 border-2 border-electric-500/30 flex items-center justify-center"
+              className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#00d4ff]/20 to-royal-500/20 border-2 border-[#00d4ff]/30 flex items-center justify-center"
             >
-              <IoMusicalNotes className={`text-3xl ${isPlaying ? 'text-electric-500' : 'text-white/40'}`} />
+              <IoMusicalNotes className={`text-3xl ${isPlaying ? 'text-[#00d4ff]' : 'text-white/40'}`} />
             </motion.div>
 
             <h3 className="text-white font-display text-lg mb-1">{eventConfig.music.songTitle}</h3>
-            <p className="text-white/40 text-sm mb-6">{eventConfig.music.artist}</p>
+            <p className="text-white/30 text-sm mb-6">{eventConfig.music.artist}</p>
 
             <div className="w-full h-1 bg-white/10 rounded-full mb-6 overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-electric-500 to-electric-300 rounded-full"
+                className="h-full bg-gradient-to-r from-[#00d4ff] to-[#40e0ff] rounded-full"
                 style={{ width: `${progress}%` }}
               />
             </div>
 
             <button
               onClick={togglePlay}
-              className="w-16 h-16 rounded-full bg-electric-500/20 border border-electric-500/30 flex items-center justify-center mx-auto hover:bg-electric-500/30 transition-all duration-300 group"
+              className="w-16 h-16 rounded-full bg-[#00d4ff]/20 border border-[#00d4ff]/30 flex items-center justify-center mx-auto hover:bg-[#00d4ff]/30 transition-all duration-300 group"
             >
               {isPlaying ? (
-                <IoPause className="text-2xl text-electric-500 group-hover:scale-110 transition-transform" />
+                <IoPause className="text-2xl text-[#00d4ff] group-hover:scale-110 transition-transform" />
               ) : (
-                <IoPlay className="text-2xl text-electric-500 ml-1 group-hover:scale-110 transition-transform" />
+                <IoPlay className="text-2xl text-[#00d4ff] ml-1 group-hover:scale-110 transition-transform" />
               )}
             </button>
 
-            <p className="text-white/30 text-xs mt-4">
+            <p className="text-white/20 text-xs mt-4">
               {isPlaying ? 'Reproduciendo...' : 'Presiona play para ambientar'}
             </p>
           </motion.div>
@@ -113,10 +113,9 @@ export default function Music() {
             transition={{ duration: 0.8 }}
             className="glass p-8 text-center"
           >
-            <IoMusicalNotes className="text-5xl text-electric-500/30 mx-auto mb-4" />
-            <p className="text-white/40 text-sm">
-              Agrega una canción en{' '}
-              <code className="text-electric-500/60 text-xs">src/config/event.js → music</code>
+            <IoMusicalNotes className="text-5xl text-[#00d4ff]/30 mx-auto mb-4" />
+            <p className="text-white/30 text-sm">
+              Agrega una canci&oacute;n en el archivo de configuraci&oacute;n
             </p>
           </motion.div>
         )}

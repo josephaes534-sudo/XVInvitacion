@@ -1,43 +1,42 @@
 const eventConfig = {
-  heroName: 'Hallie Aes',
-  heroSubtitle: 'Mis XV Años',
+  heroName: 'Hallie',
+  heroSubtitle: 'Pool Party',
 
-  countdownDate: '2026-12-31T20:00:00',
+  countdownDate: '2026-07-11T16:00:00-06:00',
 
   event: {
-    date: 'Sábado, 31 de Diciembre de 2026',
-    time: '8:00 PM',
-    venue: 'Salón de Eventos Los Jardines',
-    address: 'Av. Principal #123, Ciudad',
+    date: '11 de Julio, 2026',
+    time: '4:00 PM',
+    venue: 'Salón de Eventos',
+    address: 'Dirección aquí',
   },
 
   dressCode: {
-    title: 'Código de Vestimenta',
-    description: 'Traje formal / Vestido de gala',
-    colors: [
-      { name: 'Azul Rey', hex: '#1a237e' },
-      { name: 'Azul Marino', hex: '#0d1b2a' },
-      { name: 'Azul Eléctrico', hex: '#00d4ff' },
-      { name: 'Blanco', hex: '#ffffff' },
-      { name: 'Plateado', hex: '#c0c0c0' },
-    ],
+    title: 'Cóctel',
+    description: 'Viste elegante pero fresca para una tarde de piscina.',
+    note: 'Evitar colores azules y tonos fuertes.',
   },
 
   specialMessage: {
-    title: 'Mensaje Especial',
+    title: 'Un Mensaje Especial',
+    from: 'Hallie',
     content:
-      'Hoy cumplo 15 años y quiero celebrarlo rodeada de las personas que más quiero. Cada momento compartido con ustedes ha sido un regalo invaluable. Los invito a ser parte de esta noche mágica llena de alegría, baile y sueños por cumplir. ¡Los espero con todo mi corazón!',
+      'Estoy muy feliz de que me acompañes en este día tan especial para mí. Cada momento vivido me ha traído hasta aquí, y tenerte a mi lado lo hace aún más significativo. Gracias por ser parte de mi historia. ¡Nos vemos en la piscina!',
+  },
+
+  gallery: {
+    googlePhotosUrl: '',
+  },
+
+  music: {
+    songTitle: 'Canción especial',
+    artist: 'Artista',
+    songUrl: '',
   },
 
   rsvp: {
     formspreeEndpoint: '',
-    phone: '+52 123 456 7890',
-  },
-
-  music: {
-    songUrl: '',
-    songTitle: 'Canción de Fondo',
-    artist: 'Artista',
+    phone: '',
   },
 }
 

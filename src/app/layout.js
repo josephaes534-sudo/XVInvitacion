@@ -1,11 +1,11 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'XVhallie — Experiencia Oceánica',
-  description: 'Una experiencia digital premium de lujo junto al mar. Beach Club & Luxury Experience.',
+  title: 'Hallie\'s Pool Party — XV Años',
+  description: 'Invitación digital para la Pool Party de Hallie. Acompáñanos a celebrar sus 15 años.',
   openGraph: {
-    title: 'XVhallie — Experiencia Oceánica',
-    description: 'Una experiencia digital premium de lujo junto al mar.',
+    title: 'Hallie\'s Pool Party — XV Años',
+    description: 'Invitación digital para la Pool Party de Hallie.',
     type: 'website',
   },
 }
@@ -15,7 +15,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#060e1a',
+  themeColor: '#0a1628',
 }
 
 export default function RootLayout({ children }) {

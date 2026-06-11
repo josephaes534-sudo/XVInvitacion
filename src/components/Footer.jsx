@@ -1,17 +1,50 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { IoHeart, IoArrowUp } from 'react-icons/io5'
+import eventConfig from '@/config/event'
+
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <footer className="relative py-14 px-6 border-t border-white/5">
-      <div className="max-w-6xl mx-auto text-center">
-        <div className="font-display text-2xl md:text-3xl font-semibold bg-gradient-to-r from-blue-300 to-cyan-400 bg-clip-text text-transparent mb-3">
-          XVhallie
-        </div>
-        <p className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/20 mb-6 font-light">
-          Beach Club &bull; Luxury Experience
-        </p>
-        <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent mx-auto mb-5" />
-        <p className="text-[10px] text-white/10 tracking-[0.05em]">
-          &copy; 2026 XVhallie. Todos los derechos reservados.
-        </p>
+    <footer className="relative py-16 px-4">
+      <div className="absolute inset-0 bg-gradient-to-t from-[#060e1a] via-[#060e1a]/50 to-transparent pointer-events-none" />
+
+      <div className="relative max-w-2xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="glass inline-block px-8 py-6 mb-8">
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
+              &iexcl;Gracias por ser parte!
+            </h3>
+            <p className="text-white/30 text-sm max-w-sm mx-auto font-light">
+              Tu presencia har&aacute; de este d&iacute;a un recuerdo inolvidable
+            </p>
+          </div>
+
+          <p className="text-white/15 text-xs mb-2">
+            {eventConfig.heroName}&apos;s {eventConfig.heroSubtitle}
+          </p>
+          <p className="text-white/10 text-xs flex items-center justify-center gap-1">
+            Hecho con <IoHeart className="text-[#00d4ff]/50" /> para Hallie
+          </p>
+
+          <motion.button
+            onClick={scrollToTop}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="mt-8 w-12 h-12 rounded-full glass flex items-center justify-center mx-auto text-[#00d4ff] hover:bg-[#00d4ff]/10 transition-all duration-300 group"
+          >
+            <IoArrowUp className="group-hover:-translate-y-1 transition-transform duration-300" />
+          </motion.button>
+        </motion.div>
       </div>
     </footer>
   )

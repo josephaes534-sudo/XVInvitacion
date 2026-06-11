@@ -17,11 +17,12 @@ function CountdownItem({ value, label }) {
         key={value}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-electric-500"
+        className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold"
+        style={{ color: '#00d4ff' }}
       >
         {formatted}
       </motion.span>
-      <span className="text-white/60 text-xs sm:text-sm uppercase tracking-[0.2em] mt-2 block">
+      <span className="text-white/50 text-xs sm:text-sm uppercase tracking-[0.2em] mt-2 block">
         {label}
       </span>
     </motion.div>
@@ -35,9 +36,10 @@ function renderer({ days, hours, minutes, seconds, completed }) {
         <motion.p
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="text-3xl md:text-4xl font-display text-electric-500"
+          className="text-3xl md:text-4xl font-display"
+          style={{ color: '#00d4ff' }}
         >
-          ¡Hoy es el gran día!
+          &iexcl;Hoy es el gran d&iacute;a!
         </motion.p>
       </div>
     )
@@ -45,7 +47,7 @@ function renderer({ days, hours, minutes, seconds, completed }) {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      <CountdownItem value={days} label="Días" />
+      <CountdownItem value={days} label="D&iacute;as" />
       <CountdownItem value={hours} label="Horas" />
       <CountdownItem value={minutes} label="Minutos" />
       <CountdownItem value={seconds} label="Segundos" />
@@ -56,7 +58,7 @@ function renderer({ days, hours, minutes, seconds, completed }) {
 export default function CountdownSection() {
   return (
     <section id="countdown" className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-royal-700/20 to-navy-900/0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a1628]/80 to-transparent pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto text-center">
         <motion.div
@@ -66,8 +68,8 @@ export default function CountdownSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <IoTimeOutline className="text-electric-500 text-xl" />
-            <span className="text-electric-500/80 text-sm tracking-[0.3em] uppercase font-light">
+            <IoTimeOutline className="text-[#00d4ff] text-xl" />
+            <span className="text-[#00d4ff]/80 text-sm tracking-[0.3em] uppercase font-light">
               Cuenta Regresiva
             </span>
           </div>
@@ -76,8 +78,8 @@ export default function CountdownSection() {
             Faltan
           </h2>
 
-          <p className="text-white/50 text-sm md:text-base mb-12 max-w-md mx-auto">
-            Cada segundo me acerca más a este día especial
+          <p className="text-white/40 text-sm md:text-base mb-12 max-w-md mx-auto font-light">
+            Cada segundo me acerca m&aacute;s a este d&iacute;a especial
           </p>
         </motion.div>
 
@@ -98,9 +100,9 @@ export default function CountdownSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-12 text-white/30 text-sm"
+          className="mt-12 text-white/20 text-sm"
         >
-          {eventConfig.event.date} - {eventConfig.event.time}
+          {eventConfig.event.date}
         </motion.p>
       </div>
     </section>

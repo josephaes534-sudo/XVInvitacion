@@ -1,40 +1,108 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { HiSparkles } from 'react-icons/hi2'
+import { motion, AnimatePresence } from 'framer-motion'
+import { HiMenu, HiX } from 'react-icons/hi'
+
+const sections = [
+  { id: 'hero', label: 'Inicio' },
+  { id: 'countdown', label: 'Cuenta Regresiva' },
+  { id: 'evento', label: 'Evento' },
+  { id: 'vestimenta', label: 'Dress Code' },
+  { id: 'trivia', label: 'Trivia' },
+  { id: 'galeria', label: 'Galería' },
+  { id: 'rsvp', label: 'RSVP' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+      const current = sections.find((section) => {
+        const el = document.getElementById(section.id)
+        if (!el) return false
+        const rect = el.getBoundingClientRect()
+        return rect.top <= 100 && rect.bottom >= 100
+      })
+      if (current) setActiveSection(current.id)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    setMenuOpen(false)
+  }
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? 'bg-[rgba(6,14,26,0.85)] backdrop-blur-lg shadow-lg' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-[#0a1628]/80 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-        <span className="font-display text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-300 to-cyan-400 bg-clip-text text-transparent">
-          XVhallie
-        </span>
-        <div className="hidden md:flex items-center gap-8">
-          {['Experiencia', 'Galería', 'Contacto'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
-              className="text-xs tracking-[0.15em] uppercase text-white/40 hover:text-cyan-300 transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          <button onClick={() => scrollTo('hero')} className="text-[#00d4ff] font-display text-xl font-bold tracking-wider">
+            Hallie
+          </button>
+
+          <div className="hidden md:flex items-center gap-1">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => scrollTo(section.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  activeSection === section.id
+                    ? 'text-[#00d4ff] bg-[#00d4ff]/10'
+                    : 'text-white/60 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                {section.label}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-white/80 hover:text-white p-2"
+          >
+            {menuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+          </button>
         </div>
-        <HiSparkles className="text-cyan-400/50 text-lg md:hidden" />
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#0a1628]/95 backdrop-blur-xl border-b border-white/5"
+          >
+            <div className="px-4 py-4 space-y-1">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollTo(section.id)}
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                    activeSection === section.id
+                      ? 'text-[#00d4ff] bg-[#00d4ff]/10'
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {section.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { IoMailOutline, IoCheckmarkCircle, IoPersonOutline, IoPeopleOutline, IoChatbubbleOutline } from 'react-icons/io5'
 import eventConfig from '@/config/event'
 
@@ -32,7 +32,6 @@ export default function RSVP() {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 1000))
-
       setSubmitted(true)
     } catch {
       setSubmitted(true)
@@ -44,7 +43,7 @@ export default function RSVP() {
   if (submitted) {
     return (
       <section id="rsvp" className="relative py-24 md:py-32 px-4">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-electric-500/5 to-navy-900/0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00d4ff]/5 to-transparent pointer-events-none" />
 
         <div className="relative max-w-lg mx-auto">
           <motion.div
@@ -55,17 +54,17 @@ export default function RSVP() {
           >
             <IoCheckmarkCircle className="text-6xl text-green-400 mx-auto mb-6" />
             <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
-              ¡Gracias por confirmar!
+              &iexcl;Gracias por confirmar!
             </h3>
-            <p className="text-white/50 leading-relaxed">
-              Hallie está muy emocionada de que la acompañes en este día tan especial.
-              Te esperamos con mucho cariño.
+            <p className="text-white/40 leading-relaxed font-light">
+              Hallie est&aacute; muy emocionada de que la acompa&ntilde;es en este d&iacute;a tan especial.
+              Te esperamos con mucho cari&ntilde;o.
             </p>
             <motion.div
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ delay: 0.5 }}
-              className="w-16 h-[1px] bg-electric-500/50 mx-auto mt-6"
+              className="w-16 h-[1px] bg-[#00d4ff]/50 mx-auto mt-6"
             />
           </motion.div>
         </div>
@@ -75,7 +74,7 @@ export default function RSVP() {
 
   return (
     <section id="rsvp" className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-electric-500/5 to-navy-900/0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00d4ff]/5 to-transparent pointer-events-none" />
 
       <div className="relative max-w-lg mx-auto">
         <motion.div
@@ -86,8 +85,8 @@ export default function RSVP() {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <IoMailOutline className="text-electric-500 text-xl" />
-            <span className="text-electric-500/80 text-sm tracking-[0.3em] uppercase font-light">
+            <IoMailOutline className="text-[#00d4ff] text-xl" />
+            <span className="text-[#00d4ff]/80 text-sm tracking-[0.3em] uppercase font-light">
               RSVP
             </span>
           </div>
@@ -104,8 +103,8 @@ export default function RSVP() {
         >
           <form onSubmit={handleSubmit} className="glass p-8 md:p-10 space-y-6">
             <div>
-              <label className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-[0.2em] mb-2">
-                <IoPersonOutline className="text-electric-500" />
+              <label className="flex items-center gap-2 text-white/40 text-xs uppercase tracking-[0.2em] mb-2">
+                <IoPersonOutline className="text-[#00d4ff]" />
                 Tu Nombre
               </label>
               <input
@@ -115,23 +114,23 @@ export default function RSVP() {
                 onChange={handleChange}
                 required
                 placeholder="Escribe tu nombre completo"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 outline-none focus:border-electric-500/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 outline-none focus:border-[#00d4ff]/50 focus:bg-white/10 transition-all duration-300"
               />
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-[0.2em] mb-2">
-                <IoPeopleOutline className="text-electric-500" />
-                Número de Invitados
+              <label className="flex items-center gap-2 text-white/40 text-xs uppercase tracking-[0.2em] mb-2">
+                <IoPeopleOutline className="text-[#00d4ff]" />
+                N&uacute;mero de Invitados
               </label>
               <select
                 name="guests"
                 value={formData.guests}
                 onChange={handleChange}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:border-electric-500/50 focus:bg-white/10 transition-all duration-300 appearance-none cursor-pointer"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:border-[#00d4ff]/50 focus:bg-white/10 transition-all duration-300 appearance-none cursor-pointer"
               >
                 {[1, 2, 3, 4, 5].map((n) => (
-                  <option key={n} value={n} className="bg-navy-500">
+                  <option key={n} value={n} className="bg-[#0a1628]">
                     {n} {n === 1 ? 'Invitado' : 'Invitados'}
                   </option>
                 ))}
@@ -139,8 +138,8 @@ export default function RSVP() {
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-[0.2em] mb-2">
-                <IoChatbubbleOutline className="text-electric-500" />
+              <label className="flex items-center gap-2 text-white/40 text-xs uppercase tracking-[0.2em] mb-2">
+                <IoChatbubbleOutline className="text-[#00d4ff]" />
                 Mensaje para Hallie
               </label>
               <textarea
@@ -150,9 +149,9 @@ export default function RSVP() {
                 rows={4}
                 placeholder="Dedícale unas palabras..."
                 maxLength={500}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 outline-none focus:border-electric-500/50 focus:bg-white/10 transition-all duration-300 resize-none"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 outline-none focus:border-[#00d4ff]/50 focus:bg-white/10 transition-all duration-300 resize-none"
               />
-              <p className="text-white/20 text-xs text-right mt-1">
+              <p className="text-white/15 text-xs text-right mt-1">
                 {formData.message.length}/500
               </p>
             </div>
@@ -162,14 +161,14 @@ export default function RSVP() {
               disabled={loading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-4 rounded-xl bg-gradient-to-r from-electric-500/20 to-royal-500/20 border border-electric-500/30 text-electric-500 font-semibold text-sm uppercase tracking-[0.2em] hover:bg-electric-500/30 transition-all duration-300 disabled:opacity-50"
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-[#00d4ff]/20 to-blue-500/20 border border-[#00d4ff]/30 text-[#00d4ff] font-semibold text-sm uppercase tracking-[0.2em] hover:bg-[#00d4ff]/30 transition-all duration-300 disabled:opacity-50"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
                   <motion.span
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                    className="w-4 h-4 border-2 border-electric-500 border-t-transparent rounded-full inline-block"
+                    className="w-4 h-4 border-2 border-[#00d4ff] border-t-transparent rounded-full inline-block"
                   />
                   Enviando...
                 </span>
@@ -179,13 +178,13 @@ export default function RSVP() {
             </motion.button>
 
             {eventConfig.rsvp.phone && (
-              <p className="text-center text-white/30 text-xs">
-                O confirma vía WhatsApp:{' '}
+              <p className="text-center text-white/20 text-xs">
+                O confirma v&iacute;a WhatsApp:{' '}
                 <a
                   href={`https://wa.me/${eventConfig.rsvp.phone.replace(/[^0-9]/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-electric-500/60 hover:text-electric-500 transition-colors"
+                  className="text-[#00d4ff]/50 hover:text-[#00d4ff] transition-colors"
                 >
                   {eventConfig.rsvp.phone}
                 </a>

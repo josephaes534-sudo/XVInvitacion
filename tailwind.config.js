@@ -4,54 +4,33 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: '#0a1628',
-        royal: '#0f2a50',
-        marine: '#006680',
-        electric: '#00d4ff',
-        teal: '#00bcd4',
-        deep: '#060e1a',
+        navy: {
+          300: '#4a8fd4',
+          400: '#2a5a9e',
+          500: '#0d1b2a',
+          600: '#0a1628',
+          700: '#0f1b33',
+          800: '#0a1220',
+          900: '#060e1a',
+        },
+        royal: {
+          300: '#4a6aae',
+          400: '#2a4a8e',
+          500: '#1a3a6b',
+          600: '#0f2a50',
+          700: '#0d2345',
+        },
+        electric: {
+          300: '#80f0ff',
+          400: '#40e0ff',
+          500: '#00d4ff',
+          600: '#00b4d8',
+        },
       },
       fontFamily: {
         display: ['Playfair Display', 'serif'],
         sans: ['Inter', 'sans-serif'],
         script: ['Great Vibes', 'cursive'],
-      },
-      animation: {
-        'twinkle': 'twinkle 3s ease-in-out infinite',
-        'caustic': 'caustic 18s ease-in-out infinite',
-        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
-        'ray-pulse': 'rayPulse 3s ease-in-out infinite',
-        'marine-float': 'marineFloat 6s ease-in-out infinite',
-        'shimmer': 'shimmer 8s ease-in-out infinite',
-      },
-      keyframes: {
-        twinkle: {
-          '0%, 100%': { opacity: '0.1', transform: 'scale(0.8)' },
-          '50%': { opacity: '1', transform: 'scale(1.2)' },
-        },
-        caustic: {
-          '0%': { backgroundPosition: '0% 0%' },
-          '33%': { backgroundPosition: '50% 30%' },
-          '66%': { backgroundPosition: '30% 60%' },
-          '100%': { backgroundPosition: '0% 0%' },
-        },
-        glowPulse: {
-          '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.05)' },
-        },
-        rayPulse: {
-          '0%, 100%': { opacity: '0.2' },
-          '50%': { opacity: '0.6' },
-        },
-        marineFloat: {
-          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-          '25%': { transform: 'translateY(-5px) rotate(0.5deg)' },
-          '75%': { transform: 'translateY(3px) rotate(-0.5deg)' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% center' },
-          '100%': { backgroundPosition: '200% center' },
-        },
       },
     },
   },

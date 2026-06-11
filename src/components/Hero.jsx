@@ -2,71 +2,110 @@
 
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { gsap } from 'gsap'
+import { IoChevronDown } from 'react-icons/io5'
+import { HiSparkles } from 'react-icons/hi2'
+import eventConfig from '@/config/event'
 
 export default function Hero() {
+  const glowRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(glowRef.current, {
+        scale: 1.2,
+        opacity: 0.3,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      })
+    })
+    return () => ctx.revert()
+  }, [])
+
+  const scrollToCountdown = () => {
+    document.getElementById('countdown')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.05), transparent)' }} />
-        <div className="absolute bottom-0 right-1/4 w-1/3 h-1/3 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.05), transparent)' }} />
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#060e1a] via-[#0a1628] to-[#060e1a]" />
+
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00d4ff] rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#0f2a50] rounded-full blur-[128px]" />
       </div>
 
-      <div className="relative z-10 text-center max-w-3xl mx-auto">
+      <div
+        ref={glowRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                            radial-gradient(circle at 75% 75%, rgba(15, 42, 80, 0.08) 0%, transparent 50%)`,
+        }}
+      />
+
+      <div className="relative z-10 text-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
         >
-          <span className="inline-block text-[10px] md:text-xs tracking-[0.3em] uppercase text-cyan-400/60 mb-6 px-5 py-2 rounded-full border border-cyan-400/10 bg-cyan-400/5 backdrop-blur-sm">
-            Beach Club &bull; Luxury
-          </span>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <HiSparkles className="text-[#00d4ff] text-lg" />
+            <span className="text-[#00d4ff]/80 text-sm tracking-[0.3em] uppercase font-light">
+              Pool Party
+            </span>
+            <HiSparkles className="text-[#00d4ff] text-lg" />
+          </div>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-          className="mb-6"
+          transition={{ duration: 1.5, delay: 0.2, ease: 'easeOut' }}
+          className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold text-white text-glow mb-4 tracking-tight"
         >
-          <span className="block text-2xl md:text-4xl font-light text-white/60 mb-2">
-            Bienvenida al
-          </span>
-          <span className="block text-6xl md:text-8xl lg:text-9xl font-bold font-display bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent leading-[1.1]">
-            Océano
-          </span>
-          <span className="block text-xl md:text-3xl font-light italic text-white/40 tracking-[0.15em] mt-2">
-            de la Elegancia
-          </span>
+          {eventConfig.heroName}
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
-          className="text-sm md:text-base text-white/40 max-w-lg mx-auto leading-relaxed mb-10 font-light"
-        >
-          Donde el lujo se encuentra con el mar. Una experiencia exclusiva dise&ntilde;ada para ti.
-        </motion.p>
-
         <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+          className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff] to-transparent mx-auto mb-6"
+        />
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
+          className="text-3xl sm:text-4xl md:text-5xl font-script text-[#00d4ff] mb-8"
         >
-          <a
-            href="#experiencia"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm tracking-[0.15em] uppercase transition-all duration-500 border border-cyan-400/20 text-cyan-300/80 hover:text-white hover:border-cyan-400/40 hover:shadow-[0_0_40px_rgba(0,212,255,0.12)] bg-gradient-to-r from-cyan-500/5 to-blue-500/5"
-          >
-            <span>Descubrir</span>
-            <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-          </a>
-        </motion.div>
+          {eventConfig.heroSubtitle}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="text-white/40 text-sm tracking-[0.3em] uppercase"
+        >
+          Te invito a celebrar conmigo
+        </motion.p>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <div className="w-[1px] h-8 bg-gradient-to-b from-white/20 to-transparent animate-pulse" />
-        <span className="text-[9px] tracking-[0.25em] uppercase text-white/15">Explorar</span>
-      </div>
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.5 }}
+        onClick={scrollToCountdown}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-[#00d4ff] transition-colors group cursor-pointer"
+      >
+        <span className="text-xs tracking-[0.2em] uppercase">Descubre m&aacute;s</span>
+        <IoChevronDown className="text-2xl animate-bounce group-hover:scale-110 transition-transform" />
+      </motion.button>
     </section>
   )
 }
