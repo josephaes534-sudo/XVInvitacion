@@ -13,15 +13,13 @@ export default function ParticlesBackground() {
     let animId
     const isMobile = window.innerWidth < 768
     const isSlow = (navigator.hardwareConcurrency || 8) <= 4
-    const perf = isMobile || isSlow ? 0.4 : 1
+    const perf = isMobile || isSlow ? 0.35 : 1
 
     let bubbles = []
-    let particlesFar = []
-    let particlesMid = []
-    let particlesNear = []
     let biolum = []
-    let corals = []
+    let floaters = []
     let lightRays = []
+    let kelp = []
     let time = 0
 
     const resize = () => {
@@ -32,101 +30,87 @@ export default function ParticlesBackground() {
     }
 
     const createBubbles = () => {
-      const n = Math.round(12 * perf)
+      const n = Math.round(15 * perf)
       bubbles = Array.from({ length: n }, () => ({
         x: Math.random() * canvas.width,
-        y: canvas.height + Math.random() * 100,
-        r: 1 + Math.random() * (isMobile ? 2 : 3.5),
-        speed: 0.15 + Math.random() * 0.4,
+        y: canvas.height + Math.random() * 80,
+        r: 1 + Math.random() * (isMobile ? 2 : 3),
+        speed: 0.12 + Math.random() * 0.35,
         wobble: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.01 + Math.random() * 0.02,
+        wobbleSpeed: 0.008 + Math.random() * 0.015,
         wobbleAmp: 0.3 + Math.random() * 0.5,
-        opacity: 0.05 + Math.random() * 0.1,
+        opacity: 0.04 + Math.random() * 0.08,
+        hue: 180 + Math.random() * 30,
       }))
     }
 
-    const createParticles = () => {
-      const nFar = Math.round(20 * perf)
-      const nMid = Math.round(15 * perf)
-      const nNear = Math.round(8 * perf)
-
-      particlesFar = Array.from({ length: nFar }, () => ({
+    const createFloaters = () => {
+      const n = Math.round(35 * perf)
+      floaters = Array.from({ length: n }, () => ({
         x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        r: 0.5 + Math.random() * 1, opacity: 0.03 + Math.random() * 0.04,
-        vx: (Math.random() - 0.5) * 0.05, vy: -0.02 - Math.random() * 0.03,
-        pulse: Math.random() * Math.PI * 2, pulseSpeed: 0.005 + Math.random() * 0.01,
-      }))
-      particlesMid = Array.from({ length: nMid }, () => ({
-        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        r: 0.8 + Math.random() * 1.5, opacity: 0.05 + Math.random() * 0.06,
-        vx: (Math.random() - 0.5) * 0.08, vy: -0.03 - Math.random() * 0.04,
-        pulse: Math.random() * Math.PI * 2, pulseSpeed: 0.008 + Math.random() * 0.012,
-      }))
-      particlesNear = Array.from({ length: nNear }, () => ({
-        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        r: 1.5 + Math.random() * 2, opacity: 0.08 + Math.random() * 0.08,
-        vx: (Math.random() - 0.5) * 0.12, vy: -0.05 - Math.random() * 0.06,
-        pulse: Math.random() * Math.PI * 2, pulseSpeed: 0.01 + Math.random() * 0.015,
+        r: 0.4 + Math.random() * (Math.random() > 0.7 ? 3 : 1.5),
+        opacity: 0.02 + Math.random() * 0.06,
+        vx: (Math.random() - 0.5) * 0.04, vy: -0.01 - Math.random() * 0.03,
+        pulse: Math.random() * Math.PI * 2, pulseSpeed: 0.004 + Math.random() * 0.01,
+        hue: 170 + Math.random() * 40,
+        isGlow: Math.random() > 0.85,
       }))
     }
 
     const createBiolum = () => {
-      const n = Math.round(8 * perf)
+      const n = Math.round(12 * perf)
       biolum = Array.from({ length: n }, () => ({
         x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        r: 1 + Math.random() * 2, life: Math.random() * 300, maxLife: 200 + Math.random() * 300,
-        angle: Math.random() * Math.PI * 2, speed: 0.2 + Math.random() * 0.3,
-        phase: Math.random() * Math.PI * 2, opacity: 0.1 + Math.random() * 0.2,
+        r: 1 + Math.random() * 2.5, life: Math.random() * 400, maxLife: 300 + Math.random() * 400,
+        angle: Math.random() * Math.PI * 2, speed: 0.15 + Math.random() * 0.25,
+        phase: Math.random() * Math.PI * 2, opacity: 0.1 + Math.random() * 0.25,
+        hue: 140 + Math.random() * 60,
       }))
     }
 
-    const createCorals = () => {
-      const n = isMobile ? 3 : 5
-      corals = Array.from({ length: n }, () => ({
-        x: 0.05 + Math.random() * 0.9, baseH: 30 + Math.random() * 60,
-        w: 20 + Math.random() * 40, phase: Math.random() * Math.PI * 2,
-        color: `hsla(${160 + Math.random() * 40}, 60%, ${35 + Math.random() * 20}%, ${0.06 + Math.random() * 0.06})`,
-        swaySpeed: 0.005 + Math.random() * 0.01, swayAmp: 2 + Math.random() * 3,
+    const createKelp = () => {
+      const n = isMobile ? 2 : 4
+      kelp = Array.from({ length: n }, () => ({
+        x: 0.08 + Math.random() * 0.84, baseH: 40 + Math.random() * 80,
+        segments: 4 + Math.floor(Math.random() * 3),
+        w: 8 + Math.random() * 15, phase: Math.random() * Math.PI * 2,
+        color: `hsla(${130 + Math.random() * 40}, 50%, ${30 + Math.random() * 25}%, ${0.04 + Math.random() * 0.04})`,
+        swaySpeed: 0.004 + Math.random() * 0.008, swayAmp: 3 + Math.random() * 4,
       }))
     }
 
     const createLightRays = () => {
-      const n = isMobile ? 2 : 4
+      const n = isMobile ? 2 : 5
       lightRays = Array.from({ length: n }, () => ({
-        x: Math.random() * canvas.width * 0.8 + canvas.width * 0.1,
-        w: 10 + Math.random() * 30, h: canvas.height * (0.4 + Math.random() * 0.3),
-        opacity: 0.01 + Math.random() * 0.02, speed: 0.02 + Math.random() * 0.03,
-        angle: -15 + Math.random() * 30,
+        x: Math.random() * canvas.width * 0.85 + canvas.width * 0.05,
+        w: 8 + Math.random() * 25, h: canvas.height * (0.3 + Math.random() * 0.4),
+        opacity: 0.008 + Math.random() * 0.015, speed: 0.015 + Math.random() * 0.025,
+        angle: -20 + Math.random() * 40, hue: 180 + Math.random() * 30,
       }))
     }
 
     const init = () => {
       resize()
       createBubbles()
-      createParticles()
+      createFloaters()
       createBiolum()
-      createCorals()
+      createKelp()
       createLightRays()
     }
 
-    const drawCorals = (scrollOffset) => {
-      const w = canvas.width
-      const h = canvas.height
-      for (const c of corals) {
-        const cx = c.x * w
-        const cy = h - 40
-        const sway = Math.sin(time * c.swaySpeed + c.phase + scrollOffset * 0.001) * c.swayAmp
+    const drawKelp = (scrollOffset) => {
+      for (const k of kelp) {
+        const kx = k.x * canvas.width
+        const ky = canvas.height - 20
         ctx.save()
-        ctx.translate(cx, cy)
-        ctx.fillStyle = c.color
-        const segs = 5
-        for (let i = 0; i < segs; i++) {
-          const fi = i / segs
-          const fw = c.w * (1 - fi * 0.3)
-          const fh = c.baseH / segs
-          const sw = Math.sin(time * c.swaySpeed + c.phase + fi * 0.5 + scrollOffset * 0.001) * c.swayAmp * (1 - fi * 0.3)
+        for (let i = 0; i < k.segments; i++) {
+          const fi = i / k.segments
+          const sw = Math.sin(time * k.swaySpeed + k.phase + fi * 0.8 + scrollOffset * 0.0008) * k.swayAmp * (1 - fi * 0.2)
+          const sy = ky - i * (k.baseH / k.segments)
+          const ew = k.w * (1 - fi * 0.25)
           ctx.beginPath()
-          ctx.ellipse(sw, -(i + 0.5) * fh, fw / 2, fh / 2, 0, 0, Math.PI * 2)
+          ctx.ellipse(kx + sw, sy, ew / 2, k.baseH / k.segments / 2, 0, 0, Math.PI * 2)
+          ctx.fillStyle = k.color
           ctx.fill()
         }
         ctx.restore()
@@ -135,19 +119,19 @@ export default function ParticlesBackground() {
 
     const drawLightRays = (scrollOffset) => {
       for (const r of lightRays) {
-        const ox = Math.sin(time * r.speed + scrollOffset * 0.0005) * 10
+        const ox = Math.sin(time * r.speed + scrollOffset * 0.0004) * 8
         ctx.save()
-        ctx.globalAlpha = r.opacity * (0.7 + 0.3 * Math.sin(time * 0.01))
-        const grad = ctx.createLinearGradient(r.x + ox, 0, r.x + r.w * 0.3 + ox, r.h)
-        grad.addColorStop(0, 'rgba(0, 180, 216, 0.03)')
-        grad.addColorStop(0.5, 'rgba(0, 212, 255, 0.015)')
+        ctx.globalAlpha = r.opacity * (0.6 + 0.4 * Math.sin(time * 0.008))
+        const grad = ctx.createLinearGradient(r.x + ox, 0, r.x + r.w * 0.4 + ox, r.h)
+        grad.addColorStop(0, `rgba(100, 220, 255, 0.025)`)
+        grad.addColorStop(0.4, `rgba(0, 200, 255, 0.012)`)
         grad.addColorStop(1, 'transparent')
         ctx.fillStyle = grad
         ctx.beginPath()
         ctx.moveTo(r.x + ox, 0)
         ctx.lineTo(r.x + r.w + ox, 0)
-        ctx.lineTo(r.x + r.w * 0.7 + ox + 15, r.h)
-        ctx.lineTo(r.x + r.w * 0.3 + ox - 15, r.h)
+        ctx.lineTo(r.x + r.w * 0.6 + ox + 12, r.h)
+        ctx.lineTo(r.x + r.w * 0.4 + ox - 12, r.h)
         ctx.closePath()
         ctx.fill()
         ctx.restore()
@@ -155,21 +139,20 @@ export default function ParticlesBackground() {
     }
 
     const drawWaveOverlay = () => {
-      const w = canvas.width
-      const h = canvas.height
+      if (isMobile) return
       ctx.save()
       for (let i = 0; i < 3; i++) {
-        const y = h - 30 + i * 20
+        const y = canvas.height - 20 + i * 15
         ctx.beginPath()
         ctx.moveTo(0, y)
-        for (let x = 0; x <= w; x += 4) {
-          const wy = Math.sin(x * 0.01 + time * 0.008 + i * 2) * 4
+        for (let x = 0; x <= canvas.width; x += 3) {
+          const wy = Math.sin(x * 0.008 + time * 0.006 + i * 2) * 3
           ctx.lineTo(x, y + wy)
         }
-        ctx.lineTo(w, h)
-        ctx.lineTo(0, h)
+        ctx.lineTo(canvas.width, canvas.height)
+        ctx.lineTo(0, canvas.height)
         ctx.closePath()
-        ctx.fillStyle = `rgba(0, 212, 255, ${0.01 + i * 0.005})`
+        ctx.fillStyle = `rgba(0, 200, 255, ${0.008 + i * 0.004})`
         ctx.fill()
       }
       ctx.restore()
@@ -179,25 +162,25 @@ export default function ParticlesBackground() {
       for (const b of biolum) {
         b.life++
         if (b.life > b.maxLife) { b.life = 0; b.x = Math.random() * canvas.width; b.y = Math.random() * canvas.height }
-        b.angle += 0.005
-        b.x += Math.cos(b.angle) * 0.12
-        b.y += Math.sin(b.angle) * 0.08
-        b.phase += 0.015
+        b.angle += 0.004
+        b.x += Math.cos(b.angle) * 0.1
+        b.y += Math.sin(b.angle) * 0.06
+        b.phase += 0.012
         if (b.x < -10 || b.x > canvas.width + 10 || b.y < -10 || b.y > canvas.height + 10) {
           b.x = Math.random() * canvas.width; b.y = Math.random() * canvas.height
         }
         const progress = b.life / b.maxLife
         const fadeIn = Math.min(progress * 3, 1)
         const fadeOut = Math.max(1 - progress * 1.2, 0)
-        const o = b.opacity * fadeIn * fadeOut * (0.6 + 0.4 * Math.sin(b.phase))
+        const o = b.opacity * fadeIn * fadeOut * (0.5 + 0.5 * Math.sin(b.phase))
         if (o < 0.005) continue
-        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r * 5)
-        grad.addColorStop(0, `rgba(0, 212, 255, ${o * 0.5})`)
-        grad.addColorStop(0.3, `rgba(0, 180, 216, ${o * 0.15})`)
+        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r * 6)
+        grad.addColorStop(0, `hsla(${b.hue}, 100%, 80%, ${o * 0.5})`)
+        grad.addColorStop(0.3, `hsla(${b.hue}, 100%, 70%, ${o * 0.12})`)
         grad.addColorStop(1, 'transparent')
         ctx.fillStyle = grad
         ctx.beginPath()
-        ctx.arc(b.x, b.y, b.r * 5, 0, Math.PI * 2)
+        ctx.arc(b.x, b.y, b.r * 6, 0, Math.PI * 2)
         ctx.fill()
       }
     }
@@ -210,28 +193,36 @@ export default function ParticlesBackground() {
         if (b.y < -20) { b.y = canvas.height + 20; b.x = Math.random() * canvas.width }
         ctx.beginPath()
         ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(180, 220, 255, ${b.opacity})`
+        ctx.strokeStyle = `hsla(${b.hue}, 60%, 70%, ${b.opacity})`
         ctx.lineWidth = 0.5
         ctx.stroke()
-        // Bubble highlight
         ctx.beginPath()
         ctx.arc(b.x - b.r * 0.25, b.y - b.r * 0.25, b.r * 0.3, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 255, 255, ${b.opacity * 0.5})`
+        ctx.fillStyle = `rgba(255, 255, 255, ${b.opacity * 0.4})`
         ctx.fill()
       }
     }
 
-    const drawParticleLayer = (particles, mult) => {
-      for (const p of particles) {
-        p.x += p.vx; p.y += p.vy
-        p.pulse += p.pulseSpeed
-        if (p.x < -10) p.x = canvas.width + 10
-        if (p.x > canvas.width + 10) p.x = -10
-        if (p.y < -20) p.y = canvas.height + 20
-        const o = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse))
+    const drawFloaters = () => {
+      for (const f of floaters) {
+        f.x += f.vx; f.y += f.vy
+        f.pulse += f.pulseSpeed
+        if (f.x < -10) f.x = canvas.width + 10
+        if (f.x > canvas.width + 10) f.x = -10
+        if (f.y < -20) f.y = canvas.height + 20
+        const o = f.opacity * (0.5 + 0.5 * Math.sin(f.pulse))
+        if (f.isGlow) {
+          const grad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 4)
+          grad.addColorStop(0, `hsla(${f.hue}, 80%, 80%, ${o * 0.2})`)
+          grad.addColorStop(1, 'transparent')
+          ctx.fillStyle = grad
+          ctx.beginPath()
+          ctx.arc(f.x, f.y, f.r * 4, 0, Math.PI * 2)
+          ctx.fill()
+        }
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(180, 220, 255, ${o * mult})`
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2)
+        ctx.fillStyle = `hsla(${f.hue}, 70%, 75%, ${o})`
         ctx.fill()
       }
     }
@@ -250,12 +241,10 @@ export default function ParticlesBackground() {
       const scrollOffset = scrollRef.current
 
       drawLightRays(scrollOffset)
-      drawParticleLayer(particlesFar, 1)
-      drawCorals(scrollOffset)
-      drawParticleLayer(particlesMid, 1.5)
+      drawFloaters()
+      drawKelp(scrollOffset)
       drawBiolum()
       drawBubbles()
-      drawParticleLayer(particlesNear, 2)
       drawWaveOverlay()
 
       animId = requestAnimationFrame(animate)

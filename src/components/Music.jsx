@@ -1,51 +1,15 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { IoMusicalNotes, IoPlay, IoPause } from 'react-icons/io5'
+import { IoMusicalNotes, IoAddCircle } from 'react-icons/io5'
 import eventConfig from '@/config/event'
 
 export default function Music() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const audioRef = useRef(null)
-  const hasSong = eventConfig.music.songUrl && eventConfig.music.songUrl.length > 0
-
-  useEffect(() => {
-    if (!hasSong) return
-    audioRef.current = new Audio(eventConfig.music.songUrl)
-    audioRef.current.loop = true
-
-    const audio = audioRef.current
-    const updateProgress = () => {
-      if (audio.duration) {
-        setProgress((audio.currentTime / audio.duration) * 100)
-      }
-    }
-
-    audio.addEventListener('timeupdate', updateProgress)
-    return () => {
-      audio.removeEventListener('timeupdate', updateProgress)
-      audio.pause()
-      audio.src = ''
-    }
-  }, [hasSong])
-
-  const togglePlay = () => {
-    if (!audioRef.current) return
-    if (isPlaying) {
-      audioRef.current.pause()
-    } else {
-      audioRef.current.play()
-    }
-    setIsPlaying(!isPlaying)
-  }
+  const hasPlaylist = eventConfig.music.playlistUrl && eventConfig.music.playlistUrl.length > 0
 
   return (
     <section className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 pointer-events-none" />
-
-      <div className="relative max-w-md mx-auto">
+      <div className="relative max-w-lg mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,62 +24,53 @@ export default function Music() {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold">
-            Ambient Musical
+            Playlist Colaborativa
           </h2>
+          <p className="text-white/40 text-sm mt-3 max-w-sm mx-auto font-light">
+            Agrega tus canciones favoritas para que todos las disfrutemos en la fiesta
+          </p>
         </motion.div>
 
-        {hasSong ? (
+        {hasPlaylist ? (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="glass p-8 text-center"
           >
-            <motion.div
-              animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
-              transition={isPlaying ? { duration: 8, repeat: Infinity, ease: 'linear' } : {}}
-              className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#00d4ff]/20 to-royal-500/20 border-2 border-[#00d4ff]/30 flex items-center justify-center"
+            <a
+              href={eventConfig.music.playlistUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block glass p-8 text-center hover:bg-white/[0.06] transition-all duration-500"
             >
-              <IoMusicalNotes className={`text-3xl ${isPlaying ? 'text-[#00d4ff]' : 'text-white/40'}`} />
-            </motion.div>
-
-            <h3 className="text-white font-display text-lg mb-1">{eventConfig.music.songTitle}</h3>
-            <p className="text-white/30 text-sm mb-6">{eventConfig.music.artist}</p>
-
-            <div className="w-full h-1 bg-white/10 rounded-full mb-6 overflow-hidden">
-              <motion.div
-                className="h-full bg-gradient-to-r from-[#00d4ff] to-[#40e0ff] rounded-full"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-
-            <button
-              onClick={togglePlay}
-              className="w-16 h-16 rounded-full bg-[#00d4ff]/20 border border-[#00d4ff]/30 flex items-center justify-center mx-auto hover:bg-[#00d4ff]/30 transition-all duration-300 group"
-            >
-              {isPlaying ? (
-                <IoPause className="text-2xl text-[#00d4ff] group-hover:scale-110 transition-transform" />
-              ) : (
-                <IoPlay className="text-2xl text-[#00d4ff] ml-1 group-hover:scale-110 transition-transform" />
-              )}
-            </button>
-
-            <p className="text-white/20 text-xs mt-4">
-              {isPlaying ? 'Reproduciendo...' : 'Presiona play para ambientar'}
-            </p>
+              <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-gradient-to-br from-green-400/20 to-[#00d4ff]/10 border-2 border-green-400/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                <IoMusicalNotes className="text-3xl text-green-400" />
+              </div>
+              <h3 className="text-white font-display text-lg mb-2">{eventConfig.music.playlistTitle || 'Ver Playlist'}</h3>
+              <p className="text-white/30 text-sm mb-6">
+                Da click para abrir la playlist
+              </p>
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm border border-green-400/30 text-green-400/80 group-hover:text-green-400 group-hover:border-green-400/50 transition-all duration-500">
+                <IoAddCircle className="text-lg" />
+                Agregar Canci&oacute;n
+              </span>
+            </a>
           </motion.div>
         ) : (
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="glass p-8 text-center"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="glass p-10 text-center"
           >
-            <IoMusicalNotes className="text-5xl text-[#00d4ff]/30 mx-auto mb-4" />
-            <p className="text-white/30 text-sm">
-              Agrega una canci&oacute;n en el archivo de configuraci&oacute;n
+            <IoMusicalNotes className="text-5xl text-[#00d4ff]/30 mx-auto mb-5" />
+            <h3 className="text-white/70 font-display text-lg mb-2">Playlist Colaborativa</h3>
+            <p className="text-white/30 text-sm leading-relaxed">
+              Agrega el enlace de tu playlist favorita
+              <br />
+              <span className="text-[#00d4ff]/50 text-xs">Configura en src/config/event.js</span>
             </p>
           </motion.div>
         )}

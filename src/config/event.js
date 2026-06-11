@@ -29,9 +29,8 @@ const eventConfig = {
   },
 
   music: {
-    songTitle: 'Ocean Waves',
-    artist: 'Royalty Free',
-    songUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    playlistTitle: 'Hallie\'s Pool Party',
+    playlistUrl: '',
   },
 
   rsvp: {

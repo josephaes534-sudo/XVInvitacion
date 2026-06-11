@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
-import { HiSparkles } from 'react-icons/hi2'
 
 function Star({ data }) {
   return (
@@ -31,7 +30,7 @@ export default function EnvelopeScreen({ onOpen }) {
   const [isMobile, setIsMobile] = useState(false)
   const envelopeRef = useRef(null)
   const flapRef = useRef(null)
-  const bodyRef = useRef(null)
+  const frontContentRef = useRef(null)
   const letterRef = useRef(null)
   const letterContentRef = useRef(null)
   const containerRef = useRef(null)
@@ -68,9 +67,13 @@ export default function EnvelopeScreen({ onOpen }) {
 
     tl.to(glowOverlayRef.current, {
       opacity: 1,
-      duration: 0.4,
+      duration: 0.5,
       ease: 'power2.out',
     })
+      .to(frontContentRef.current, {
+        opacity: 0,
+        duration: 0.3,
+      }, '-=0.1')
       .to(flapRef.current, {
         rotateX: -180,
         duration: 1.2,
@@ -83,18 +86,18 @@ export default function EnvelopeScreen({ onOpen }) {
       }, '-=0.4')
       .to(letterContentRef.current, {
         opacity: 1,
-        duration: 0.5,
-      }, '-=0.3')
+        duration: 0.6,
+      }, '-=0.2')
       .to(glowOverlayRef.current, {
         opacity: 0,
         duration: 0.6,
-      }, '+=0.3')
+      }, '+=0.4')
       .to(letterContentRef.current, {
         opacity: 0,
         y: '-20%',
         duration: 0.7,
         ease: 'power2.in',
-      }, '+=0.2')
+      }, '+=0.3')
       .to(containerRef.current, {
         opacity: 0,
         scale: 1.02,
@@ -169,8 +172,8 @@ export default function EnvelopeScreen({ onOpen }) {
     })
   }, [state])
 
-  const w = isMobile ? 290 : 380
-  const h = isMobile ? 400 : 520
+  const w = isMobile ? 340 : 440
+  const h = isMobile ? 420 : 540
 
   return (
     <AnimatePresence>
@@ -198,7 +201,7 @@ export default function EnvelopeScreen({ onOpen }) {
             ref={glowOverlayRef}
             className="absolute inset-0 pointer-events-none z-10"
             style={{
-              background: 'radial-gradient(circle at center, rgba(0,212,255,0.2), transparent 60%)',
+              background: 'radial-gradient(circle at center, rgba(0,212,255,0.25), transparent 60%)',
               opacity: 0,
             }}
           />
@@ -209,9 +212,7 @@ export default function EnvelopeScreen({ onOpen }) {
             style={{ perspective: '1200px', willChange: 'transform' }}
           >
             <div className="relative" style={{ width: w }}>
-              {/* ENVELOPE BODY */}
               <div
-                ref={bodyRef}
                 style={{
                   width: w,
                   height: h,
@@ -243,27 +244,21 @@ export default function EnvelopeScreen({ onOpen }) {
                     top: 0,
                     left: 0,
                     width: '100%',
-                    height: '40%',
+                    height: '36%',
                     transformOrigin: 'bottom center',
                     backfaceVisibility: 'hidden',
                     zIndex: 3,
                     willChange: 'transform',
                   }}
                 >
-                  {/* Triangular flap using clip-path */}
                   <div
                     style={{
                       width: '100%',
                       height: '100%',
                       background: 'linear-gradient(170deg, #1a3f72 0%, #0f2a50 50%, #0d2345 100%)',
                       clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
-                      border: '1.5px solid rgba(74, 143, 212, 0.25)',
-                      borderBottom: 'none',
-                      borderLeft: 'none',
-                      borderRight: 'none',
                     }}
                   />
-                  {/* Glow on flap edge */}
                   <div
                     style={{
                       position: 'absolute',
@@ -276,92 +271,43 @@ export default function EnvelopeScreen({ onOpen }) {
                   />
                 </div>
 
-                {/* ENVELOPE FRONT CONTENT (visible below flap) */}
+                {/* FRONT - minimal, no text */}
                 <div
+                  ref={frontContentRef}
                   style={{
                     position: 'absolute',
                     bottom: 0,
                     left: 0,
                     width: '100%',
-                    height: '65%',
+                    height: '68%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '0 24px',
                     zIndex: 2,
                   }}
                 >
-                  <div className="flex items-center gap-2 mb-4">
-                    <HiSparkles style={{ color: 'rgba(0,212,255,0.3)', fontSize: '12px' }} />
-                    <span
-                      style={{
-                        fontSize: '10px',
-                        letterSpacing: '0.3em',
-                        textTransform: 'uppercase',
-                        color: 'rgba(0,212,255,0.3)',
-                        fontWeight: 300,
-                      }}
-                    >
-                      Para ti
-                    </span>
-                    <HiSparkles style={{ color: 'rgba(0,212,255,0.3)', fontSize: '12px' }} />
-                  </div>
-
-                  <h2
-                    className="font-display font-bold text-center"
-                    style={{
-                      fontSize: isMobile ? '28px' : '40px',
-                      color: '#fff',
-                      textShadow: '0 0 20px rgba(0,212,255,0.3), 0 0 40px rgba(0,212,255,0.15)',
-                      letterSpacing: '0.02em',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    Hallie Aes
-                  </h2>
-
-                  <p
-                    className="font-script mt-3"
-                    style={{
-                      fontSize: isMobile ? '20px' : '30px',
-                      color: 'rgba(0,212,255,0.55)',
-                      textShadow: '0 0 15px rgba(0,212,255,0.15)',
-                    }}
-                  >
-                    Pool Party
-                  </p>
-
-                  <p
-                    style={{
-                      fontSize: isMobile ? '12px' : '14px',
-                      color: 'rgba(255,255,255,0.35)',
-                      marginTop: '10px',
-                      letterSpacing: '0.15em',
-                      fontWeight: 300,
-                    }}
-                  >
-                    Celebrando mis 15
-                  </p>
-
+                  {/* Minimal decorative seal */}
                   <div
                     style={{
-                      marginTop: '20px',
-                      width: '60px',
-                      height: '1px',
-                      background: 'linear-gradient(to right, transparent, rgba(0,212,255,0.2), transparent)',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,100,180,0.08))',
+                      border: '1.5px solid rgba(0,212,255,0.15)',
+                      boxShadow: '0 0 20px rgba(0,212,255,0.08)',
                     }}
                   />
                 </div>
 
-                {/* LETTER INSIDE ENVELOPE */}
+                {/* LETTER INSIDE */}
                 <div
                   ref={letterRef}
                   style={{
                     position: 'absolute',
                     top: '3%',
-                    left: '6%',
-                    right: '6%',
+                    left: '5%',
+                    right: '5%',
                     bottom: '3%',
                     transform: 'translateY(105%)',
                     willChange: 'transform',
@@ -380,7 +326,7 @@ export default function EnvelopeScreen({ onOpen }) {
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '20px',
+                      padding: '24px',
                       opacity: 0,
                       position: 'relative',
                       overflow: 'hidden',
@@ -395,55 +341,57 @@ export default function EnvelopeScreen({ onOpen }) {
                     />
                     <div
                       style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '44px',
+                        height: '44px',
                         borderRadius: '50%',
                         background: 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,100,180,0.1))',
                         border: '1px solid rgba(0,212,255,0.2)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        marginBottom: '12px',
+                        marginBottom: '14px',
                       }}
                     >
-                      <HiSparkles style={{ fontSize: '18px', color: '#00d4ff' }} />
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#00d4ff" opacity="0.6"/>
+                      </svg>
                     </div>
                     <h3
                       className="font-display font-bold text-center"
-                      style={{ fontSize: isMobile ? '20px' : '26px', color: '#0a1628', marginBottom: '8px' }}
+                      style={{ fontSize: isMobile ? '22px' : '28px', color: '#0a1628', marginBottom: '10px' }}
                     >
                       &iexcl;Bienvenidos!
                     </h3>
                     <p
                       className="text-center leading-relaxed"
                       style={{
-                        fontSize: isMobile ? '11px' : '13px',
+                        fontSize: isMobile ? '12px' : '14px',
                         color: '#4a6a8a',
-                        maxWidth: '260px',
+                        maxWidth: '300px',
                         fontWeight: 300,
                       }}
                     >
-                      Los espero en mi Pool Party para celebrar juntos este d&iacute;a tan especial
+                      Los espero en mi Pool Party para celebrar juntos este d&iacute;a tan especial. 
+                      Su presencia har&aacute; de este momento un recuerdo inolvidable.
                     </p>
                     <div
                       style={{
-                        width: '50px',
+                        width: '60px',
                         height: '1px',
                         background: 'linear-gradient(to right, transparent, rgba(0,212,255,0.3), transparent)',
-                        margin: '12px 0',
+                        margin: '16px 0',
                       }}
                     />
-                    <p className="font-display font-bold" style={{ fontSize: isMobile ? '18px' : '22px', color: '#0a1628' }}>
+                    <p className="font-display font-bold" style={{ fontSize: isMobile ? '20px' : '24px', color: '#0a1628' }}>
                       Hallie Aes
                     </p>
-                    <p className="font-script" style={{ fontSize: isMobile ? '14px' : '18px', color: '#0f2a50', marginTop: '2px' }}>
+                    <p className="font-script" style={{ fontSize: isMobile ? '16px' : '20px', color: '#0f2a50', marginTop: '2px' }}>
                       XV A&ntilde;os
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative border glow */}
               <div
                 className="absolute -inset-[1px] pointer-events-none"
                 style={{
