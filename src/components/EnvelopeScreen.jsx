@@ -318,9 +318,7 @@ export default function EnvelopeScreen({ onOpen }) {
                       lineHeight: 1.2,
                     }}
                   >
-                    Hallie&apos;s
-                    <br />
-                    Pool Party
+                    Hallie Aes
                   </h2>
 
                   <p
@@ -329,6 +327,18 @@ export default function EnvelopeScreen({ onOpen }) {
                       fontSize: isMobile ? '20px' : '30px',
                       color: 'rgba(0,212,255,0.55)',
                       textShadow: '0 0 15px rgba(0,212,255,0.15)',
+                    }}
+                  >
+                    Pool Party
+                  </p>
+
+                  <p
+                    style={{
+                      fontSize: isMobile ? '12px' : '14px',
+                      color: 'rgba(255,255,255,0.35)',
+                      marginTop: '10px',
+                      letterSpacing: '0.15em',
+                      fontWeight: 300,
                     }}
                   >
                     Celebrando mis 15
@@ -424,7 +434,7 @@ export default function EnvelopeScreen({ onOpen }) {
                       }}
                     />
                     <p className="font-display font-bold" style={{ fontSize: isMobile ? '18px' : '22px', color: '#0a1628' }}>
-                      Hallie
+                      Hallie Aes
                     </p>
                     <p className="font-script" style={{ fontSize: isMobile ? '14px' : '18px', color: '#0f2a50', marginTop: '2px' }}>
                       XV A&ntilde;os

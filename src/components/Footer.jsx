@@ -33,7 +33,7 @@ export default function Footer() {
             {eventConfig.heroName}&apos;s {eventConfig.heroSubtitle}
           </p>
           <p className="text-white/10 text-xs flex items-center justify-center gap-1">
-            Hecho con <IoHeart className="text-[#00d4ff]/50" /> para Hallie
+            Hecho con <IoHeart className="text-[#00d4ff]/50" /> para Hallie Aes
           </p>
 
           <motion.button

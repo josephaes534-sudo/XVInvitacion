@@ -14,6 +14,7 @@ import Gallery from '@/components/Gallery'
 import Music from '@/components/Music'
 import RSVP from '@/components/RSVP'
 import Footer from '@/components/Footer'
+import MusicPlayer from '@/components/MusicPlayer'
 
 const EnvelopeScreen = dynamic(
   () => import('@/components/EnvelopeScreen'),
@@ -55,6 +56,7 @@ export default function Home() {
         <Music />
         <RSVP />
         <Footer />
+        <MusicPlayer />
       </main>
     </>
   )

@@ -49,7 +49,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <button onClick={() => scrollTo('hero')} className="text-[#00d4ff] font-display text-xl font-bold tracking-wider">
-            Hallie
+            Hallie Aes
           </button>
 
           <div className="hidden md:flex items-center gap-1">

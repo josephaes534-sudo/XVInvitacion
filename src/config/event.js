@@ -1,5 +1,5 @@
 const eventConfig = {
-  heroName: 'Hallie',
+  heroName: 'Hallie Aes',
   heroSubtitle: 'Pool Party',
 
   countdownDate: '2026-07-11T16:00:00-06:00',
@@ -29,9 +29,9 @@ const eventConfig = {
   },
 
   music: {
-    songTitle: 'Canción especial',
-    artist: 'Artista',
-    songUrl: '',
+    songTitle: 'Ocean Waves',
+    artist: 'Royalty Free',
+    songUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
   },
 
   rsvp: {
