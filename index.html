@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>XVhallie — Experiencia Oceánica</title>
+<meta name="description" content="Una experiencia digital premium de lujo junto al mar">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<div id="envelope-screen">
+  <div class="stars-container" id="stars-container"></div>
+  <div class="envelope-wrapper">
+    <div class="envelope" id="envelope">
+      <div class="envelope-flap" id="envelope-flap">
+        <div class="flap-glow"></div>
+      </div>
+      <div class="envelope-body" id="envelope-body">
+        <div class="envelope-body-shine"></div>
+        <div class="envelope-border-glow"></div>
+        <div class="central-gem" id="central-gem">
+          <div class="gem-core"></div>
+          <div class="gem-ring"></div>
+          <div class="gem-glow"></div>
+        </div>
+        <div class="envelope-sparkles" id="envelope-sparkles"></div>
+      </div>
+      <div class="letter" id="letter">
+        <div class="letter-glow"></div>
+        <div class="letter-inner">
+          <div class="letter-shine"></div>
+          <div class="letter-decoration"></div>
+          <p class="letter-text">Estás invitada</p>
+          <p class="letter-subtext">a una experiencia junto al mar</p>
+          <div class="letter-line"></div>
+        </div>
+      </div>
+    </div>
+    <button class="open-btn" id="open-btn">
+      <span class="btn-text">ABRIR INVITACIÓN</span>
+      <span class="btn-glow"></span>
+    </button>
+  </div>
+  <div class="scroll-hint" id="scroll-hint">
+    <span>XVhallie</span>
+  </div>
+</div>
+
+<div id="main-content" class="hidden">
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-light-rays"></div>
+      <div class="hero-water-ripple"></div>
+    </div>
+    <nav class="navbar">
+      <div class="nav-brand">XVhallie</div>
+      <div class="nav-links">
+        <a href="#experiencia">Experiencia</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <div class="hero-badge">BEACH CLUB • LUXURY</div>
+      <h1 class="hero-title">
+        <span class="title-line">Bienvenida al</span>
+        <span class="title-line title-main">Océano</span>
+        <span class="title-line title-sub">de la Elegancia</span>
+      </h1>
+      <p class="hero-desc">Donde el lujo se encuentra con el mar. Una experiencia exclusiva diseñada para ti.</p>
+      <div class="hero-cta">
+        <a href="#experiencia" class="btn-primary">
+          <span>Descubrir</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-indicator">
+      <div class="indicator-line"></div>
+      <span>Explorar</span>
+    </div>
+  </section>
+
+  <section class="section experiencia" id="experiencia">
+    <div class="section-bg"></div>
+    <div class="section-content">
+      <div class="section-header">
+        <span class="section-tag">• Experiencia</span>
+        <h2>Un destino donde el<br>océano abraza el alma</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M32 4L40 20L56 22L44 34L48 50L32 42L16 50L20 34L8 22L24 20L32 4Z" fill="currentColor" opacity="0.15"/><path d="M32 4L40 20L56 22L44 34L48 50L32 42L16 50L20 34L8 22L24 20L32 4Z" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Elegancia Marina</h3>
+          <p>Cada detalle inspirado en la profundidad y belleza del océano.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="1.5"/><path d="M32 12V32L44 44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="currentColor" opacity="0.3"/></svg>
+          </div>
+          <h3>Atardeceres Únicos</h3>
+          <p>Momentos mágicos donde el sol se funde con el horizonte marino.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M12 44C12 44 20 32 32 32C44 32 52 44 52 44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 52C8 52 18 38 32 38C46 38 56 52 56 52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="20" r="8" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Lujo y Confort</h3>
+          <p>Una experiencia premium diseñada para los sentidos más exigentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section galeria" id="galeria">
+    <div class="section-content">
+      <div class="section-header">
+        <span class="section-tag">• Galería</span>
+        <h2>Capturando la esencia<br>del océano</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item item-1">
+          <div class="gallery-overlay"></div>
+          <div class="gallery-info">
+            <span>Amanecer en el mar</span>
+          </div>
+        </div>
+        <div class="gallery-item item-2">
+          <div class="gallery-overlay"></div>
+          <div class="gallery-info">
+            <span>Olas cristalinas</span>
+          </div>
+        </div>
+        <div class="gallery-item item-3">
+          <div class="gallery-overlay"></div>
+          <div class="gallery-info">
+            <span>Horizonte infinito</span>
+          </div>
+        </div>
+        <div class="gallery-item item-4">
+          <div class="gallery-overlay"></div>
+          <div class="gallery-info">
+            <span>Luz bioluminiscente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contacto" id="contacto">
+    <div class="section-bg-alt"></div>
+    <div class="section-content">
+      <div class="contacto-inner">
+        <div class="contacto-text">
+          <span class="section-tag">• Contacto</span>
+          <h2>Reserva tu<br>experiencia</h2>
+          <p>Déjanos ser parte de tu historia junto al mar.</p>
+          <a href="mailto:hello@xvhallie.com" class="btn-primary">
+            <span>hello@xvhallie.com</span>
+          </a>
+        </div>
+        <div class="contacto-decoration">
+          <div class="decoration-sphere"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">XVhallie</div>
+      <p class="footer-text">Beach Club • Luxury Experience</p>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">© 2026 XVhallie. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
