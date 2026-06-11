@@ -4,14 +4,9 @@ import { useState, useCallback, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import CountdownSection from '@/components/Countdown'
-import EventInfo from '@/components/EventInfo'
-import DressCode from '@/components/DressCode'
-import SpecialMessage from '@/components/SpecialMessage'
-import Trivia from '@/components/Trivia'
+import About from '@/components/About'
 import Gallery from '@/components/Gallery'
-import Music from '@/components/Music'
-import RSVP from '@/components/RSVP'
+import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import ParticlesBackground from '@/components/ParticlesBackground'
 
@@ -36,18 +31,19 @@ export default function Home() {
     <>
       {!showMain && <EnvelopeScreen onOpen={handleEnvelopeOpen} />}
 
-      <main className="relative min-h-screen marine-caustics">
-        <ParticlesBackground variant="marine" />
+      <main
+        className="relative min-h-screen marine-caustics"
+        style={{
+          opacity: showMain ? 1 : 0,
+          transition: 'opacity 0.8s ease',
+        }}
+      >
+        <ParticlesBackground variant="ocean" />
         <Navbar />
         <Hero />
-        <CountdownSection />
-        <EventInfo />
-        <DressCode />
-        <SpecialMessage />
-        <Trivia />
+        <About />
         <Gallery />
-        <Music />
-        <RSVP />
+        <Contact />
         <Footer />
       </main>
     </>

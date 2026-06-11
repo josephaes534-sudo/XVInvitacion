@@ -1,115 +1,48 @@
 'use client'
 
-import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules'
-import { IoImagesOutline } from 'react-icons/io5'
-import { HiPhoto } from 'react-icons/hi2'
 
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/effect-coverflow'
-
-import galleryConfig from '@/config/gallery'
+const items = [
+  { label: 'Amanecer en el mar', gradient: 'from-[#0d2345] to-[#1a3f72]' },
+  { label: 'Olas cristalinas', gradient: 'from-[#0a1a32] via-[#0d2a55] to-[#1a4a7a]' },
+  { label: 'Horizonte infinito', gradient: 'from-[#0d2a55] via-[#1a3f72] to-[#0d2345]' },
+  { label: 'Luz bioluminiscente', gradient: 'from-[#0a1a32] via-[#0d2a55] to-[#0f2a50]' },
+]
 
 export default function Gallery() {
-  const hasImages = galleryConfig.images && galleryConfig.images.length > 0
-  const hasGoogleUrl = galleryConfig.googlePhotosUrl && galleryConfig.googlePhotosUrl.length > 0
-  const canShow = hasImages || hasGoogleUrl
-
   return (
-    <section id="galeria" className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-navy-800/30 to-navy-900/0" />
-
-      <div className="relative max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <IoImagesOutline className="text-electric-500 text-xl" />
-            <span className="text-electric-500/80 text-sm tracking-[0.3em] uppercase font-light">
-              Galería
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-display font-bold">
-            Nuestros Momentos
+    <section id="galeria" className="relative py-24 md:py-32 px-6">
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="mb-16 md:mb-20">
+          <span className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-cyan-400/40">
+            &bull; Galer&iacute;a
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl font-light mt-3 leading-tight">
+            Capturando la esencia<br />
+            <span className="text-white/80">del océano</span>
           </h2>
-        </motion.div>
+        </div>
 
-        {canShow ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-              effect="coverflow"
-              grabCursor
-              centeredSlides
-              slidesPerView="auto"
-              coverflowEffect={{
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2,
-                slideShadows: false,
-              }}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              className="!pb-12"
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {items.map((item, i) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: i * 0.1, ease: 'easeOut' }}
+              className={`relative h-56 md:h-72 rounded-xl overflow-hidden bg-gradient-to-br ${item.gradient} border border-white/5 hover:border-cyan-400/20 transition-all duration-500 group`}
             >
-              {galleryConfig.images.map((src, index) => (
-                <SwiperSlide key={index} className="!w-[300px] sm:!w-[400px] md:!w-[500px]">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass glow-blue">
-                    <img
-                      src={src}
-                      alt={`Galería ${index + 1}`}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent pointer-events-none" />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="glass p-12 md:p-16 text-center max-w-lg mx-auto"
-          >
-            <HiPhoto className="text-6xl text-electric-500/30 mx-auto mb-6" />
-            <h3 className="text-xl font-display font-bold text-white/70 mb-3">
-              Galería de Fotos
-            </h3>
-            <p className="text-white/40 text-sm leading-relaxed">
-              Las fotos estarán disponibles pronto.
-              <br />
-              Configura tu álbum de Google Photos en{' '}
-              <code className="text-electric-500/60 text-xs">src/config/gallery.js</code>
-            </p>
-          </motion.div>
-        )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,14,26,0.6)] via-transparent to-transparent" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-cyan-500/5 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-5">
+                <span className="font-script text-base md:text-lg text-white/60">
+                  {item.label}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

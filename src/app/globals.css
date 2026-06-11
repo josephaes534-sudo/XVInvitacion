@@ -5,116 +5,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&family=Great+Vibes&display=swap');
 
 :root {
-  --royal-blue: #1a237e;
-  --navy-blue: #0d1b2a;
-  --electric-blue: #00d4ff;
-  --teal: #00bcd4;
-  --marine: #006680;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-bg-hover: rgba(255, 255, 255, 0.1);
+  --electric: #00d4ff;
+  --navy: #0a1628;
+  --royal: #0f2a50;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--electric-blue) transparent;
+  scrollbar-color: var(--electric) transparent;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--electric); border-radius: 3px; }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--electric-blue);
-  border-radius: 3px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: linear-gradient(135deg, var(--navy-blue), #0f1b33, var(--royal-blue));
-  color: #ffffff;
+  background: linear-gradient(135deg, #060e1a, #0a1628, #0f2a50);
+  color: #e8f0f8;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
 
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-}
-
-.glass-strong {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-}
-
-.text-glow {
-  text-shadow:
-    0 0 10px rgba(0, 212, 255, 0.3),
-    0 0 20px rgba(0, 212, 255, 0.2),
-    0 0 40px rgba(0, 212, 255, 0.1);
-}
-
-.text-glow-strong {
-  text-shadow:
-    0 0 20px rgba(0, 212, 255, 0.5),
-    0 0 40px rgba(0, 212, 255, 0.3),
-    0 0 80px rgba(0, 212, 255, 0.1);
-}
-
-.glow-blue {
-  box-shadow:
-    0 0 15px rgba(0, 212, 255, 0.2),
-    0 0 30px rgba(0, 212, 255, 0.1);
-}
-
-.glow-blue-strong {
-  box-shadow:
-    0 0 20px rgba(0, 212, 255, 0.3),
-    0 0 40px rgba(0, 212, 255, 0.2),
-    0 0 60px rgba(0, 212, 255, 0.1);
-}
-
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--electric-blue), transparent, var(--electric-blue));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: #00d4ff !important;
-}
-
-.swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.5) !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: #00d4ff !important;
+@layer utilities {
+  .glass {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0,212,255,0.1);
+    border-radius: 16px;
+  }
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0,212,255,0.3), 0 0 20px rgba(0,212,255,0.2), 0 0 40px rgba(0,212,255,0.1);
+  }
+  .glow-blue {
+    box-shadow: 0 0 15px rgba(0,212,255,0.2), 0 0 30px rgba(0,212,255,0.1);
+  }
+  .marine-caustics {
+    background-image:
+      radial-gradient(ellipse at 20% 30%, rgba(0,212,255,0.04) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 60%, rgba(0,188,212,0.03) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, rgba(0,150,200,0.03) 0%, transparent 30%);
+    background-size: 150% 150%;
+    animation: caustic 18s ease-in-out infinite;
+  }
 }
 
 @keyframes twinkle {
@@ -123,15 +58,20 @@ body {
 }
 
 @keyframes caustic {
-  0% { transform: translateX(0) translateY(0) scale(1); }
-  33% { transform: translateX(30px) translateY(-20px) scale(1.1); }
-  66% { transform: translateX(-20px) translateY(30px) scale(0.95); }
-  100% { transform: translateX(0) translateY(0) scale(1); }
+  0% { background-position: 0% 0%; }
+  33% { background-position: 50% 30%; }
+  66% { background-position: 30% 60%; }
+  100% { background-position: 0% 0%; }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes rayPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
 }
 
 @keyframes marineFloat {
@@ -140,59 +80,7 @@ body {
   75% { transform: translateY(3px) rotate(-0.5deg); }
 }
 
-@layer utilities {
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .perspective-1200 {
-    perspective: 1200px;
-  }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
-
-  .marine-caustics {
-    background-image:
-      radial-gradient(ellipse at 20% 30%, rgba(0, 212, 255, 0.06) 0%, transparent 40%),
-      radial-gradient(ellipse at 80% 60%, rgba(0, 188, 212, 0.05) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 80%, rgba(0, 150, 200, 0.04) 0%, transparent 30%);
-    background-size: 200% 200%;
-    animation: caustic 12s ease-in-out infinite;
-  }
-
-  .marine-shimmer {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.03) 25%,
-      rgba(0, 212, 255, 0.05) 50%,
-      rgba(255, 255, 255, 0.03) 75%,
-      transparent 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 6s ease-in-out infinite;
-  }
-
-  .card-3d {
-    transform: perspective(1000px);
-    transition: transform 0.3s ease;
-  }
-
-  .card-3d:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
-  }
-
-  .animate-marine-float {
-    animation: marineFloat 6s ease-in-out infinite;
-  }
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }

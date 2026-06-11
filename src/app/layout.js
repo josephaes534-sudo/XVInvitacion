@@ -1,15 +1,21 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Hallie Aes - Mis XV Años',
-  description:
-    'Invitación digital para los XV años de Hallie Aes. Acompáñanos a celebrar esta noche mágica.',
+  title: 'XVhallie — Experiencia Oceánica',
+  description: 'Una experiencia digital premium de lujo junto al mar. Beach Club & Luxury Experience.',
   openGraph: {
-    title: 'Hallie Aes - Mis XV Años',
-    description:
-      'Invitación digital para los XV años de Hallie Aes. Acompáñanos a celebrar esta noche mágica.',
+    title: 'XVhallie — Experiencia Oceánica',
+    description: 'Una experiencia digital premium de lujo junto al mar.',
     type: 'website',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#060e1a',
 }
 
 export default function RootLayout({ children }) {
