@@ -40,28 +40,13 @@ body {
     text-shadow: 0 0 10px rgba(0,212,255,0.3), 0 0 20px rgba(0,212,255,0.2), 0 0 40px rgba(0,212,255,0.1);
   }
   .glow-blue {
-    box-shadow: 0 0 15px rgba(0,212,255,0.2), 0 0 30px rgba(0,212,255,0.1);
-  }
-  .marine-caustics {
-    background-image:
-      radial-gradient(ellipse at 20% 30%, rgba(0,212,255,0.04) 0%, transparent 40%),
-      radial-gradient(ellipse at 80% 60%, rgba(0,188,212,0.03) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 80%, rgba(0,150,200,0.03) 0%, transparent 30%);
-    background-size: 150% 150%;
-    animation: caustic 18s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(0,212,255,0.15), 0 0 30px rgba(0,212,255,0.08);
   }
 }
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.1; transform: scale(0.8); }
   50% { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes caustic {
-  0% { background-position: 0% 0%; }
-  33% { background-position: 50% 30%; }
-  66% { background-position: 30% 60%; }
-  100% { background-position: 0% 0%; }
 }
 
 @keyframes glowPulse {
@@ -76,7 +61,7 @@ body {
 
 @keyframes marineFloat {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-5px) rotate(0.5deg); }
+  25% { transform: translateY(-4px) rotate(0.5deg); }
   75% { transform: translateY(3px) rotate(-0.5deg); }
 }
 
