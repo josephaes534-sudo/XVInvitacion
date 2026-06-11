@@ -6,31 +6,34 @@ import eventConfig from '@/config/event'
 
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [show, setShow] = useState(false)
+  const [ready, setReady] = useState(false)
   const audioRef = useRef(null)
+  const startedRef = useRef(false)
   const hasSong = eventConfig.music.songUrl && eventConfig.music.songUrl.length > 0
 
   useEffect(() => {
     if (!hasSong) return
     const audio = new Audio(eventConfig.music.songUrl)
     audio.loop = true
-    audio.volume = 0.4
+    audio.volume = 0.3
     audioRef.current = audio
 
-    const onUserInteraction = () => {
-      if (!audio.paused) return
+    audio.addEventListener('canplaythrough', () => setReady(true))
+
+    const startOnClick = () => {
+      if (startedRef.current) return
+      startedRef.current = true
       audio.play().then(() => {
         setIsPlaying(true)
-        setShow(true)
       }).catch(() => {})
-      document.removeEventListener('click', onUserInteraction)
     }
 
-    document.addEventListener('click', onUserInteraction)
+    document.addEventListener('click', startOnClick, { once: true })
+
     return () => {
       audio.pause()
       audio.src = ''
-      document.removeEventListener('click', onUserInteraction)
+      document.removeEventListener('click', startOnClick)
     }
   }, [hasSong])
 
@@ -55,7 +58,7 @@ export default function MusicPlayer() {
         border: '1px solid rgba(0,212,255,0.2)',
         boxShadow: isPlaying ? '0 0 20px rgba(0,212,255,0.15)' : 'none',
       }}
-      title={isPlaying ? 'Pausar música' : 'Reproducir música'}
+      title={isPlaying ? 'Pausar m\u00fasica' : 'Reproducir m\u00fasica'}
     >
       {isPlaying ? (
         <IoMusicalNotes className="text-[#00d4ff] text-lg animate-pulse" />

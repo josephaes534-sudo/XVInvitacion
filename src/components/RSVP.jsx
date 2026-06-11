@@ -43,7 +43,7 @@ export default function RSVP() {
   if (submitted) {
     return (
       <section id="rsvp" className="relative py-24 md:py-32 px-4">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00d4ff]/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none" />
 
         <div className="relative max-w-lg mx-auto">
           <motion.div
@@ -73,10 +73,10 @@ export default function RSVP() {
   }
 
   return (
-    <section id="rsvp" className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00d4ff]/5 to-transparent pointer-events-none" />
+      <section id="rsvp" className="relative py-24 md:py-32 px-4">
+        <div className="absolute inset-0 pointer-events-none" />
 
-      <div className="relative max-w-lg mx-auto">
+        <div className="relative max-w-lg mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

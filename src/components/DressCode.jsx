@@ -7,7 +7,7 @@ import eventConfig from '@/config/event'
 export default function DressCode() {
   return (
     <section id="vestimenta" className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a1628]/80 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto">
         <motion.div

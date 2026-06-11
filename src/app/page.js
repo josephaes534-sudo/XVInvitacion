@@ -37,6 +37,8 @@ export default function Home() {
     <>
       {!showMain && <EnvelopeScreen onOpen={handleEnvelopeOpen} />}
 
+      <ParticlesBackground />
+
       <main
         className="relative min-h-screen"
         style={{
@@ -44,7 +46,6 @@ export default function Home() {
           transition: 'opacity 0.8s ease',
         }}
       >
-        <ParticlesBackground />
         <Navbar />
         <Hero />
         <CountdownSection />

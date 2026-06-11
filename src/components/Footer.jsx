@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="relative py-16 px-4">
-      <div className="absolute inset-0 bg-gradient-to-t from-[#060e1a] via-[#060e1a]/50 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" />
 
       <div className="relative max-w-2xl mx-auto text-center">
         <motion.div

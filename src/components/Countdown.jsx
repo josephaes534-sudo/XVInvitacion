@@ -58,7 +58,7 @@ function renderer({ days, hours, minutes, seconds, completed }) {
 export default function CountdownSection() {
   return (
     <section id="countdown" className="relative py-24 md:py-32 px-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a1628]/80 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto text-center">
         <motion.div
