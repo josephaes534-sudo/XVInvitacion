@@ -1,0 +1,199 @@
+'use client'
+
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { IoMailOutline, IoCheckmarkCircle, IoPersonOutline, IoPeopleOutline, IoChatbubbleOutline } from 'react-icons/io5'
+import eventConfig from '@/config/event'
+
+export default function RSVP() {
+  const [formData, setFormData] = useState({
+    name: '',
+    guests: '1',
+    message: '',
+  })
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+
+    try {
+      if (eventConfig.rsvp.formspreeEndpoint) {
+        await fetch(eventConfig.rsvp.formspreeEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        })
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+
+      setSubmitted(true)
+    } catch {
+      setSubmitted(true)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (submitted) {
+    return (
+      <section id="rsvp" className="relative py-24 md:py-32 px-4">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-electric-500/5 to-navy-900/0" />
+
+        <div className="relative max-w-lg mx-auto">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', duration: 0.8 }}
+            className="glass p-12 text-center"
+          >
+            <IoCheckmarkCircle className="text-6xl text-green-400 mx-auto mb-6" />
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+              ¡Gracias por confirmar!
+            </h3>
+            <p className="text-white/50 leading-relaxed">
+              Hallie está muy emocionada de que la acompañes en este día tan especial.
+              Te esperamos con mucho cariño.
+            </p>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ delay: 0.5 }}
+              className="w-16 h-[1px] bg-electric-500/50 mx-auto mt-6"
+            />
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section id="rsvp" className="relative py-24 md:py-32 px-4">
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/0 via-electric-500/5 to-navy-900/0" />
+
+      <div className="relative max-w-lg mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <IoMailOutline className="text-electric-500 text-xl" />
+            <span className="text-electric-500/80 text-sm tracking-[0.3em] uppercase font-light">
+              RSVP
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-display font-bold">
+            Confirma tu Asistencia
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <form onSubmit={handleSubmit} className="glass p-8 md:p-10 space-y-6">
+            <div>
+              <label className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-[0.2em] mb-2">
+                <IoPersonOutline className="text-electric-500" />
+                Tu Nombre
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Escribe tu nombre completo"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 outline-none focus:border-electric-500/50 focus:bg-white/10 transition-all duration-300"
+              />
+            </div>
+
+            <div>
+              <label className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-[0.2em] mb-2">
+                <IoPeopleOutline className="text-electric-500" />
+                Número de Invitados
+              </label>
+              <select
+                name="guests"
+                value={formData.guests}
+                onChange={handleChange}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:border-electric-500/50 focus:bg-white/10 transition-all duration-300 appearance-none cursor-pointer"
+              >
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <option key={n} value={n} className="bg-navy-500">
+                    {n} {n === 1 ? 'Invitado' : 'Invitados'}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-[0.2em] mb-2">
+                <IoChatbubbleOutline className="text-electric-500" />
+                Mensaje para Hallie
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={4}
+                placeholder="Dedícale unas palabras..."
+                maxLength={500}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 outline-none focus:border-electric-500/50 focus:bg-white/10 transition-all duration-300 resize-none"
+              />
+              <p className="text-white/20 text-xs text-right mt-1">
+                {formData.message.length}/500
+              </p>
+            </div>
+
+            <motion.button
+              type="submit"
+              disabled={loading}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-electric-500/20 to-royal-500/20 border border-electric-500/30 text-electric-500 font-semibold text-sm uppercase tracking-[0.2em] hover:bg-electric-500/30 transition-all duration-300 disabled:opacity-50"
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    className="w-4 h-4 border-2 border-electric-500 border-t-transparent rounded-full inline-block"
+                  />
+                  Enviando...
+                </span>
+              ) : (
+                'Confirmar Asistencia'
+              )}
+            </motion.button>
+
+            {eventConfig.rsvp.phone && (
+              <p className="text-center text-white/30 text-xs">
+                O confirma vía WhatsApp:{' '}
+                <a
+                  href={`https://wa.me/${eventConfig.rsvp.phone.replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-electric-500/60 hover:text-electric-500 transition-colors"
+                >
+                  {eventConfig.rsvp.phone}
+                </a>
+              </p>
+            )}
+          </form>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
