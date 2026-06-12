@@ -24,10 +24,14 @@ export default function RSVP() {
 
     try {
       if (eventConfig.rsvp.formspreeEndpoint) {
+        const params = new URLSearchParams()
+        params.append('name', formData.name)
+        params.append('guests', formData.guests)
+        params.append('message', formData.message)
         await fetch(eventConfig.rsvp.formspreeEndpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
         })
       }
 

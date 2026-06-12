@@ -31,6 +31,7 @@ const eventConfig = {
   music: {
     playlistTitle: 'Hallie\'s Pool Party',
     playlistUrl: '',
+    songUrl: '',
   },
 
   rsvp: {
