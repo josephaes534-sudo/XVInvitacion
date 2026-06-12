@@ -6,7 +6,6 @@ import { gsap } from 'gsap'
 
 export default function EnvelopeScreen({ onOpen }) {
   const [state, setState] = useState('idle')
-  const envelopeRef = useRef(null)
   const flapRef = useRef(null)
   const letterRef = useRef(null)
   const containerRef = useRef(null)
@@ -26,20 +25,20 @@ export default function EnvelopeScreen({ onOpen }) {
 
     tl.to(flapRef.current, {
       rotateX: -180,
-      duration: 1,
+      duration: 1.2,
       ease: 'power3.inOut',
     })
       .to(letterRef.current, {
         y: '0%',
-        duration: 0.8,
+        duration: 0.9,
         ease: 'power3.out',
-      }, '-=0.4')
+      }, '-=0.5')
       .to(containerRef.current, {
         opacity: 0,
-        scale: 1.03,
-        duration: 0.7,
+        scale: 1.02,
+        duration: 0.8,
         ease: 'power2.inOut',
-      }, '+=0.8')
+      }, '+=0.6')
   }, [onOpen])
 
   return (
@@ -54,25 +53,31 @@ export default function EnvelopeScreen({ onOpen }) {
             background: 'linear-gradient(170deg, #060e1a 0%, #0a1628 25%, #0d2345 45%, #0a1628 65%, #0f2a50 85%, #060e1a 100%)',
           }}
         >
-          <div
-            ref={envelopeRef}
-            className="relative"
-            style={{ perspective: '1000px' }}
-          >
-            <div className="relative" style={{ width: 320 }}>
-              {/* Envelope body */}
+          <div className="relative" style={{ perspective: '1200px' }}>
+            <div className="relative" style={{ width: 340 }}>
               <div
                 style={{
-                  width: 320,
-                  height: 400,
+                  width: 340,
+                  height: 420,
                   position: 'relative',
-                  borderRadius: '4px',
-                  background: 'linear-gradient(175deg, #0f2a50 0%, #1a3f72 30%, #0d2a55 60%, #0a1a32 100%)',
-                  border: '1.5px solid rgba(74, 143, 212, 0.25)',
-                  boxShadow: '0 8px 40px rgba(0, 20, 60, 0.5), inset 0 0 40px rgba(0, 212, 255, 0.02)',
+                  borderRadius: '6px',
+                  background: 'linear-gradient(175deg, #f7f2e8 0%, #efe8d8 30%, #e8dfcc 60%, #f0e8d8 100%)',
+                  boxShadow: '0 12px 60px rgba(0,0,0,0.5), 0 2px 0 rgba(255,255,255,0.1) inset',
                   overflow: 'hidden',
                 }}
               >
+                {/* Border lines for carta feel */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 12, left: 12, right: 12, bottom: 12,
+                    border: '1px solid rgba(180, 160, 130, 0.15)',
+                    borderRadius: '4px',
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                  }}
+                />
+
                 {/* Flap */}
                 <div
                   ref={flapRef}
@@ -81,7 +86,7 @@ export default function EnvelopeScreen({ onOpen }) {
                     top: 0,
                     left: 0,
                     width: '100%',
-                    height: '35%',
+                    height: '36%',
                     transformOrigin: 'bottom center',
                     backfaceVisibility: 'hidden',
                     zIndex: 3,
@@ -92,10 +97,32 @@ export default function EnvelopeScreen({ onOpen }) {
                     style={{
                       width: '100%',
                       height: '100%',
-                      background: 'linear-gradient(170deg, #1a3f72 0%, #0f2a50 50%, #0d2345 100%)',
+                      background: 'linear-gradient(170deg, #f0e8d8 0%, #e8dfcc 50%, #e0d6c0 100%)',
                       clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
+                      borderBottom: '1px solid rgba(180, 160, 130, 0.1)',
                     }}
                   />
+                </div>
+
+                {/* Wax seal */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '25%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 52,
+                    height: 52,
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle at 35% 35%, #c0392b 0%, #96281b 40%, #7a1f14 80%, #5a120a 100%)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,200,150,0.3)',
+                    zIndex: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.5)', fontFamily: 'serif', fontStyle: 'italic' }}>H</span>
                 </div>
 
                 {/* Letter inside */}
@@ -116,44 +143,42 @@ export default function EnvelopeScreen({ onOpen }) {
                     style={{
                       width: '100%',
                       height: '100%',
-                      borderRadius: '6px',
-                      background: 'linear-gradient(160deg, #e8f0f8 0%, #d0dce8 30%, #c8d8e8 60%, #e0e8f0 100%)',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                      borderRadius: '4px',
+                      background: 'linear-gradient(160deg, #fcf9f2 0%, #f5f0e6 30%, #f0e8d8 60%, #f5efe5 100%)',
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '24px',
+                      padding: '28px 24px',
                     }}
                   >
                     <div
                       style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: '50%',
-                        background: 'linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,180,0.1))',
-                        border: '1px solid rgba(0,212,255,0.2)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: 12,
+                        position: 'absolute',
+                        top: 12, left: 12, right: 12, bottom: 12,
+                        border: '1px solid rgba(180, 160, 130, 0.1)',
+                        borderRadius: '2px',
+                        pointerEvents: 'none',
                       }}
+                    />
+                    <h3
+                      className="font-display font-bold text-center"
+                      style={{ fontSize: 24, color: '#2c1810', marginBottom: 6 }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#00d4ff" opacity="0.6"/>
-                      </svg>
-                    </div>
-                    <h3 className="font-display font-bold text-center" style={{ fontSize: 22, color: '#0a1628', marginBottom: 8 }}>
                       &iexcl;Bienvenidos!
                     </h3>
-                    <p className="text-center leading-relaxed" style={{ fontSize: 13, color: '#4a6a8a', maxWidth: 260, fontWeight: 300 }}>
-                      Los espero en mi Pool Party para celebrar juntos este d&iacute;a tan especial.
+                    <p
+                      className="text-center leading-relaxed"
+                      style={{ fontSize: 13, color: '#7a5a44', maxWidth: 260, fontWeight: 300, lineHeight: 1.7 }}
+                    >
+                      Los espero en mi Pool Party para celebrar juntos este d&iacute;a tan especial. Su presencia har&aacute; de este momento un recuerdo inolvidable.
                     </p>
-                    <div style={{ width: 50, height: 1, background: 'linear-gradient(to right, transparent, rgba(0,212,255,0.3), transparent)', margin: '14px 0' }} />
-                    <p className="font-display font-bold" style={{ fontSize: 20, color: '#0a1628' }}>
+                    <div style={{ width: 60, height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: '16px 0' }} />
+                    <p className="font-display font-bold" style={{ fontSize: 22, color: '#2c1810' }}>
                       Hallie Aes
                     </p>
-                    <p className="font-script" style={{ fontSize: 16, color: '#0f2a50', marginTop: 2 }}>
+                    <p className="font-script" style={{ fontSize: 16, color: '#7a5a44', marginTop: 2 }}>
                       XV A&ntilde;os
                     </p>
                   </div>
@@ -176,7 +201,6 @@ export default function EnvelopeScreen({ onOpen }) {
                   background: 'linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,100,180,0.1))',
                   border: '1px solid rgba(0,212,255,0.2)',
                   color: 'rgba(0,212,255,0.85)',
-                  boxShadow: '0 0 20px rgba(0,212,255,0.05)',
                 }}
               >
                 Abrir Invitaci&oacute;n

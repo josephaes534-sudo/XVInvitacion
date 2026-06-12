@@ -31,7 +31,7 @@ const eventConfig = {
   music: {
     playlistTitle: 'Hallie\'s Pool Party',
     playlistUrl: '',
-    songUrl: '',
+    songUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
   },
 
   rsvp: {
