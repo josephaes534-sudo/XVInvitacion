@@ -51,7 +51,7 @@ export default function Navbar() {
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[rgba(6,14,26,0.7)] backdrop-blur-2xl border-b border-[rgba(255,255,255,0.03)]'
+          ? 'bg-[rgba(10,22,40,0.7)] backdrop-blur-2xl border-b border-[rgba(255,255,255,0.03)]'
           : 'bg-transparent'
       }`}
     >
@@ -60,7 +60,7 @@ export default function Navbar() {
           <button
             onClick={() => scrollTo('hero')}
             className="font-display text-lg font-bold tracking-wider transition-all duration-300 hover:opacity-80"
-            style={{ color: 'rgba(0, 212, 255, 0.8)' }}
+            style={{ color: 'rgba(74, 176, 224, 0.8)' }}
           >
             Hallie Aes
           </button>
@@ -81,8 +81,8 @@ export default function Navbar() {
                     layoutId="nav-indicator"
                     className="absolute inset-0 rounded-xl"
                     style={{
-                      background: 'rgba(0, 212, 255, 0.06)',
-                      border: '1px solid rgba(0, 212, 255, 0.08)',
+                      background: 'rgba(74, 176, 224, 0.06)',
+                      border: '1px solid rgba(74, 176, 224, 0.08)',
                     }}
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
@@ -100,17 +100,17 @@ export default function Navbar() {
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
                 className="block w-5 h-[1.5px] rounded-full bg-current transition-colors"
-                style={{ color: menuOpen ? 'rgba(0,212,255,0.8)' : 'rgba(255,255,255,0.5)' }}
+                style={{ color: menuOpen ? 'rgba(74,176,224,0.8)' : 'rgba(255,255,255,0.5)' }}
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
                 className="block w-5 h-[1.5px] rounded-full bg-current transition-colors"
-                style={{ color: menuOpen ? 'rgba(0,212,255,0.8)' : 'rgba(255,255,255,0.5)' }}
+                style={{ color: menuOpen ? 'rgba(74,176,224,0.8)' : 'rgba(255,255,255,0.5)' }}
               />
               <motion.span
                 animate={menuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
                 className="block w-5 h-[1.5px] rounded-full bg-current transition-colors"
-                style={{ color: menuOpen ? 'rgba(0,212,255,0.8)' : 'rgba(255,255,255,0.5)' }}
+                style={{ color: menuOpen ? 'rgba(74,176,224,0.8)' : 'rgba(255,255,255,0.5)' }}
               />
             </div>
           </button>
@@ -126,7 +126,7 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="md:hidden overflow-hidden"
             style={{
-              background: 'rgba(6,14,26,0.85)',
+              background: 'rgba(10,22,40,0.85)',
               backdropFilter: 'blur(30px)',
               borderBottom: '1px solid rgba(255,255,255,0.03)',
             }}
@@ -138,7 +138,7 @@ export default function Navbar() {
                   onClick={() => scrollTo(section.id)}
                   className={`block w-full text-left px-5 py-3.5 rounded-2xl text-sm font-medium transition-all duration-300 ${
                     activeSection === section.id
-                      ? 'text-white bg-[rgba(0,212,255,0.06)]'
+                      ? 'text-white bg-[rgba(74,176,224,0.06)]'
                       : 'text-[rgba(255,255,255,0.4)] hover:text-white hover:bg-[rgba(255,255,255,0.03)]'
                   }`}
                 >

@@ -86,7 +86,7 @@ export default function Trivia() {
             transition={{ type: 'spring', duration: 0.8 }}
             className="glass-card p-10 md:p-14 text-center relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.02)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(74,176,224,0.02)] to-transparent pointer-events-none" />
             <div className="relative">
               <div className="text-5xl mb-6">✨</div>
               <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
@@ -94,7 +94,7 @@ export default function Trivia() {
               </h3>
               <div
                 className="text-7xl md:text-8xl font-display font-bold mb-4 text-glow-soft"
-                style={{ color: 'rgba(0, 212, 255, 0.9)' }}
+                style={{ color: 'rgba(74, 176, 224, 0.9)' }}
               >
                 {score}/{questions.length}
               </div>
@@ -103,7 +103,7 @@ export default function Trivia() {
               </p>
               <div className="flex justify-center gap-4 mb-8">
                 <div className="glass-card px-7 py-4 text-center min-w-[120px]">
-                  <p className="text-2xl font-bold" style={{ color: 'rgba(0, 212, 255, 0.9)' }}>
+                  <p className="text-2xl font-bold" style={{ color: 'rgba(74, 176, 224, 0.9)' }}>
                     {score}
                   </p>
                   <p className="text-[rgba(255,255,255,0.2)] text-[10px] uppercase tracking-[0.2em] mt-1">Correctas</p>
@@ -151,7 +151,7 @@ export default function Trivia() {
           <motion.div
             className="h-full rounded-full"
             style={{
-              background: 'linear-gradient(90deg, rgba(0,212,255,0.4), rgba(0,212,255,0.8))',
+              background: 'linear-gradient(90deg, rgba(74,176,224,0.4), rgba(74,176,224,0.8))',
             }}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -168,7 +168,7 @@ export default function Trivia() {
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
           >
             <div className="glass-card p-8 md:p-10 mb-6 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.01)] to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[rgba(74,176,224,0.01)] to-transparent pointer-events-none" />
               <div className="relative">
                 <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-8 text-center leading-relaxed">
                   {questions[current].question}
@@ -241,9 +241,9 @@ export default function Trivia() {
                 width: index === current ? 24 : 8,
                 height: 8,
                 background: index === current
-                  ? 'rgba(0,212,255,0.6)'
+                  ? 'rgba(74,176,224,0.6)'
                   : index < current
-                    ? 'rgba(0,212,255,0.2)'
+                    ? 'rgba(74,176,224,0.2)'
                     : 'rgba(255,255,255,0.08)',
               }}
               layout

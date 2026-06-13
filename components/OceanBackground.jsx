@@ -21,6 +21,7 @@ export default function OceanBackground() {
     let bubbles = []
     let particles = []
     let fish = []
+    let sparkles = []
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -38,9 +39,9 @@ export default function OceanBackground() {
         y: randomBetween(0.05, 0.95),
         r: randomBetween(100, 300),
         r2: randomBetween(60, 180),
-        hue: randomBetween(165, 195),
-        sat: randomBetween(25, 45),
-        light: randomBetween(55, 75),
+        hue: randomBetween(205, 230),
+        sat: randomBetween(20, 40),
+        light: randomBetween(50, 70),
         opacity: randomBetween(0.025, 0.05),
         speed: randomBetween(0.001, 0.003),
         phase: randomBetween(0, Math.PI * 2),
@@ -54,9 +55,9 @@ export default function OceanBackground() {
         baseY: randomBetween(0.55, 0.88),
         height: randomBetween(30, 80),
         width: randomBetween(20, 50),
-        hue: randomBetween(165, 195),
-        sat: randomBetween(25, 45),
-        light: randomBetween(55, 70),
+        hue: randomBetween(205, 225),
+        sat: randomBetween(20, 40),
+        light: randomBetween(50, 65),
         opacity: randomBetween(0.08, 0.18),
         phase: randomBetween(0, Math.PI * 2),
         swaySpeed: randomBetween(0.0015, 0.0035),
@@ -78,7 +79,7 @@ export default function OceanBackground() {
         wobbleSpeed: randomBetween(0.004, 0.01),
         wobbleAmp: randomBetween(0.2, 0.5),
         opacity: randomBetween(0.03, 0.08),
-        hue: randomBetween(170, 195),
+        hue: randomBetween(210, 230),
       }))
     }
 
@@ -93,7 +94,7 @@ export default function OceanBackground() {
         vy: randomBetween(-0.015, -0.003),
         pulse: randomBetween(0, Math.PI * 2),
         pulseSpeed: randomBetween(0.002, 0.006),
-        hue: randomBetween(165, 200),
+        hue: randomBetween(210, 230),
         isGlow: Math.random() > 0.9,
       }))
     }
@@ -106,12 +107,27 @@ export default function OceanBackground() {
         size: randomBetween(5, 12),
         speed: randomBetween(0.08, 0.2),
         opacity: randomBetween(0.015, 0.035),
-        hue: randomBetween(165, 195),
-        sat: randomBetween(20, 40),
+        hue: randomBetween(205, 220),
+        sat: randomBetween(15, 35),
         light: randomBetween(60, 80),
         phase: randomBetween(0, Math.PI * 2),
         direction: Math.random() > 0.5 ? 1 : -1,
         tailPhase: randomBetween(0, Math.PI * 2),
+      }))
+    }
+
+    const createSparkles = () => {
+      const n = Math.round(8 * perf)
+      sparkles = Array.from({ length: n }, () => ({
+        x: randomBetween(0.05, 0.95),
+        y: randomBetween(0.1, 0.9),
+        size: randomBetween(1, 3),
+        pulse: randomBetween(0, Math.PI * 2),
+        pulseSpeed: randomBetween(0.005, 0.015),
+        hue: 45,
+        sat: 80,
+        light: 70,
+        opacity: randomBetween(0.15, 0.4),
       }))
     }
 
@@ -175,7 +191,7 @@ export default function OceanBackground() {
           ctx.stroke()
 
           const grad = ctx.createRadialGradient(tipX, tipY, 0, tipX, tipY, c.width * 0.12)
-          grad.addColorStop(0, `hsla(${tipHue + 15}, 90%, 85%, ${o * 0.25})`)
+          grad.addColorStop(0, `hsla(${tipHue + 15}, 70%, 80%, ${o * 0.25})`)
           grad.addColorStop(1, 'transparent')
           ctx.fillStyle = grad
           ctx.beginPath()
@@ -311,8 +327,8 @@ export default function OceanBackground() {
         ctx.globalAlpha = 0.008 * pulse
 
         const grad = ctx.createLinearGradient(rx, 0, rx + rw * 0.3, rh)
-        grad.addColorStop(0, `hsla(210, 60%, 85%, 0.02)`)
-        grad.addColorStop(0.4, `hsla(210, 40%, 75%, 0.01)`)
+        grad.addColorStop(0, `hsla(215, 60%, 85%, 0.02)`)
+        grad.addColorStop(0.4, `hsla(215, 40%, 75%, 0.01)`)
         grad.addColorStop(1, 'transparent')
         ctx.fillStyle = grad
         ctx.beginPath()
@@ -326,14 +342,44 @@ export default function OceanBackground() {
       }
     }
 
+    const drawSparkles = () => {
+      for (const s of sparkles) {
+        s.pulse += s.pulseSpeed
+        const o = s.opacity * (0.3 + 0.7 * Math.sin(s.pulse))
+        const size = s.size * (isMobile ? 0.6 : 1)
+
+        ctx.save()
+        ctx.globalAlpha = o
+
+        const sx = s.x * canvas.width
+        const sy = s.y * canvas.height
+
+        const grad = ctx.createRadialGradient(sx, sy, 0, sx, sy, size * 4)
+        grad.addColorStop(0, `hsla(${s.hue}, ${s.sat}%, ${s.light}%, 0.8)`)
+        grad.addColorStop(0.3, `hsla(${s.hue}, ${s.sat}%, ${s.light}%, 0.3)`)
+        grad.addColorStop(1, 'transparent')
+        ctx.fillStyle = grad
+        ctx.beginPath()
+        ctx.arc(sx, sy, size * 4, 0, Math.PI * 2)
+        ctx.fill()
+
+        ctx.beginPath()
+        ctx.arc(sx, sy, size * 0.5, 0, Math.PI * 2)
+        ctx.fillStyle = `hsla(${s.hue}, ${s.sat + 10}%, ${s.light + 20}%, 0.9)`
+        ctx.fill()
+
+        ctx.restore()
+      }
+    }
+
     const drawDepthOverlay = () => {
       ctx.save()
       const grad = ctx.createLinearGradient(0, 0, 0, canvas.height)
-      grad.addColorStop(0, 'rgba(20, 50, 48, 0)')
-      grad.addColorStop(0.15, 'rgba(20, 50, 48, 0.015)')
-      grad.addColorStop(0.5, 'rgba(20, 50, 48, 0)')
-      grad.addColorStop(0.8, 'rgba(20, 50, 48, 0.015)')
-      grad.addColorStop(1, 'rgba(20, 50, 48, 0.04)')
+      grad.addColorStop(0, 'rgba(10, 22, 40, 0)')
+      grad.addColorStop(0.15, 'rgba(10, 22, 40, 0.015)')
+      grad.addColorStop(0.5, 'rgba(10, 22, 40, 0)')
+      grad.addColorStop(0.8, 'rgba(10, 22, 40, 0.015)')
+      grad.addColorStop(1, 'rgba(10, 22, 40, 0.04)')
       ctx.fillStyle = grad
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.restore()
@@ -346,6 +392,7 @@ export default function OceanBackground() {
       createBubbles()
       createParticles()
       createFish()
+      createSparkles()
     }
 
     init()
@@ -358,6 +405,7 @@ export default function OceanBackground() {
       drawCorals()
       drawLightRays()
       drawFish()
+      drawSparkles()
       drawParticles()
       drawBubbles()
       drawDepthOverlay()
@@ -388,17 +436,17 @@ export default function OceanBackground() {
         style={{
           zIndex: 0,
           background: `
-            radial-gradient(ellipse at 15% 30%, rgba(100, 180, 175, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 20%, rgba(130, 200, 195, 0.05) 0%, transparent 45%),
-            radial-gradient(ellipse at 50% 80%, rgba(80, 160, 155, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 50%, rgba(110, 190, 185, 0.04) 0%, transparent 40%),
-            radial-gradient(ellipse at 25% 80%, rgba(90, 170, 165, 0.04) 0%, transparent 35%),
+            radial-gradient(ellipse at 15% 30%, rgba(74, 150, 200, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 20%, rgba(90, 160, 220, 0.05) 0%, transparent 45%),
+            radial-gradient(ellipse at 50% 80%, rgba(60, 140, 200, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 50%, rgba(80, 150, 210, 0.04) 0%, transparent 40%),
+            radial-gradient(ellipse at 25% 80%, rgba(50, 130, 190, 0.04) 0%, transparent 35%),
             linear-gradient(180deg,
-              rgba(20, 50, 48, 0) 0%,
-              rgba(30, 60, 58, 0.02) 20%,
-              rgba(40, 70, 68, 0.02) 50%,
-              rgba(30, 60, 58, 0.015) 75%,
-              rgba(20, 50, 48, 0.04) 100%
+              rgba(10, 22, 40, 0) 0%,
+              rgba(16, 30, 48, 0.02) 20%,
+              rgba(26, 42, 66, 0.02) 50%,
+              rgba(16, 30, 48, 0.015) 75%,
+              rgba(10, 22, 40, 0.04) 100%
             )
           `,
         }}

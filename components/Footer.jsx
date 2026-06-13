@@ -32,7 +32,7 @@ export default function Footer() {
             {eventConfig.heroName}&apos;s {eventConfig.heroSubtitle}
           </p>
           <p className="text-[rgba(255,255,255,0.06)] text-[11px] flex items-center justify-center gap-1.5">
-            Hecho con <IoHeart size={11} style={{ color: 'rgba(0, 212, 255, 0.3)' }} /> para Hallie Aes
+            Hecho con <IoHeart size={11} style={{ color: 'rgba(74, 176, 224, 0.3)' }} /> para Hallie Aes
           </p>
 
           <motion.button
@@ -44,7 +44,7 @@ export default function Footer() {
             <IoArrowUp
               size={16}
               className="group-hover:-translate-y-1 transition-transform duration-300"
-              style={{ color: 'rgba(0, 212, 255, 0.5)' }}
+              style={{ color: 'rgba(74, 176, 224, 0.5)' }}
             />
           </motion.button>
         </motion.div>

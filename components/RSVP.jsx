@@ -54,14 +54,14 @@ export default function RSVP() {
             transition={{ type: 'spring', duration: 0.8 }}
             className="glass-card p-12 md:p-14 text-center relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,255,150,0.02)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(74,176,224,0.02)] to-transparent pointer-events-none" />
             <div className="relative">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', duration: 0.6, delay: 0.2 }}
               >
-                <IoCheckmarkCircle className="text-6xl mx-auto mb-6" style={{ color: 'rgba(0, 200, 100, 0.7)' }} />
+                <IoCheckmarkCircle className="text-6xl mx-auto mb-6" style={{ color: 'rgba(74, 176, 224, 0.7)' }} />
               </motion.div>
               <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
                 ¡Gracias por confirmar!
@@ -104,11 +104,11 @@ export default function RSVP() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
         >
           <form onSubmit={handleSubmit} className="glass-card p-8 md:p-10 space-y-6 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.01)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(74,176,224,0.01)] to-transparent pointer-events-none" />
             <div className="relative space-y-6">
               <div>
                 <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoPersonOutline size={14} style={{ color: 'rgba(0, 212, 255, 0.5)' }} />
+                  <IoPersonOutline size={14} style={{ color: 'rgba(74, 176, 224, 0.5)' }} />
                   Tu Nombre
                 </label>
                 <input
@@ -124,7 +124,7 @@ export default function RSVP() {
 
               <div>
                 <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoPeopleOutline size={14} style={{ color: 'rgba(0, 212, 255, 0.5)' }} />
+                  <IoPeopleOutline size={14} style={{ color: 'rgba(74, 176, 224, 0.5)' }} />
                   Número de Invitados
                 </label>
                 <div className="relative">
@@ -148,7 +148,7 @@ export default function RSVP() {
 
               <div>
                 <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoChatbubbleOutline size={14} style={{ color: 'rgba(0, 212, 255, 0.5)' }} />
+                  <IoChatbubbleOutline size={14} style={{ color: 'rgba(74, 176, 224, 0.5)' }} />
                   Mensaje para Hallie
                 </label>
                 <textarea
@@ -179,7 +179,7 @@ export default function RSVP() {
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                       className="w-4 h-4 border-2 rounded-full inline-block"
                       style={{
-                        borderColor: 'rgba(0,212,255,0.6)',
+                        borderColor: 'rgba(74,176,224,0.6)',
                         borderTopColor: 'transparent',
                       }}
                     />
@@ -197,7 +197,7 @@ export default function RSVP() {
                     href={`https://wa.me/${eventConfig.rsvp.phone.replace(/[^0-9]/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[rgba(0,212,255,0.4)] hover:text-[rgba(0,212,255,0.7)] transition-colors"
+                    className="text-[rgba(74,176,224,0.4)] hover:text-[rgba(74,176,224,0.7)] transition-colors"
                   >
                     {eventConfig.rsvp.phone}
                   </a>

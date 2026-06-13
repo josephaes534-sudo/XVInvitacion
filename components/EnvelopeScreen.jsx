@@ -22,7 +22,7 @@ export default function EnvelopeScreen({ onOpen }) {
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none"
           style={{
-            background: 'linear-gradient(170deg, #1a3a38 0%, #2a4a48 25%, #3a5a58 45%, #2a4a48 65%, #1a3a38 85%, #0a1a18 100%)',
+            background: 'linear-gradient(170deg, #0a1628 0%, #101e30 25%, #1a2a42 45%, #101e30 65%, #0a1628 85%, #0a1628 100%)',
           }}
         >
           <div className="absolute inset-0 pointer-events-none">
@@ -30,13 +30,19 @@ export default function EnvelopeScreen({ onOpen }) {
               animate={{ opacity: [0.04, 0.08, 0.04] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(100,200,195,0.35), transparent 70%)', filter: 'blur(60px)' }}
+              style={{ background: 'radial-gradient(circle, rgba(74,150,220,0.35), transparent 70%)', filter: 'blur(60px)' }}
             />
             <motion.div
               animate={{ opacity: [0.03, 0.06, 0.03] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
               className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(80,170,165,0.3), transparent 70%)', filter: 'blur(80px)' }}
+              style={{ background: 'radial-gradient(circle, rgba(60,130,200,0.3), transparent 70%)', filter: 'blur(80px)' }}
+            />
+            <motion.div
+              animate={{ opacity: [0.02, 0.05, 0.02] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+              className="absolute top-1/2 left-1/2 w-[200px] h-[200px] rounded-full"
+              style={{ background: 'radial-gradient(circle, rgba(232,200,74,0.15), transparent 60%)', filter: 'blur(50px)' }}
             />
           </div>
 
@@ -75,7 +81,12 @@ export default function EnvelopeScreen({ onOpen }) {
                     background: 'linear-gradient(155deg, rgba(210,225,242,0.95) 0%, rgba(195,215,238,0.9) 50%, rgba(185,205,235,0.85) 100%)',
                     clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
                     borderBottom: '1px solid rgba(200,215,235,0.12)',
-                  }} />
+                  }}>
+                    <div style={{
+                      position: 'absolute', top: '20%', left: '30%', right: '30%', height: '1px',
+                      background: 'linear-gradient(90deg, transparent, rgba(232,200,74,0.15), transparent)',
+                    }} />
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -128,9 +139,9 @@ export default function EnvelopeScreen({ onOpen }) {
                 onClick={handleOpen}
                 className="mt-8 px-10 py-3.5 rounded-full font-semibold text-sm uppercase tracking-[0.3em] transition-all duration-500"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(100,200,195,0.12), rgba(70,170,165,0.08))',
-                  border: '1px solid rgba(100,200,195,0.2)',
-                  color: 'rgba(200,245,240,0.9)',
+                  background: 'linear-gradient(135deg, rgba(74,150,220,0.12), rgba(232,200,74,0.06))',
+                  border: '1px solid rgba(74,150,220,0.2)',
+                  color: 'rgba(200,230,250,0.9)',
                 }}
               >
                 Abrir Invitación
