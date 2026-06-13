@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { IoCalendarOutline, IoTimeOutline, IoLocationOutline } from 'react-icons/io5'
-import eventConfig from '@/config/event'
+import eventConfig from '../config/event'
 
 const details = [
   {
@@ -64,9 +64,9 @@ export default function EventInfo() {
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
               className="glass-card p-7 md:p-9 text-center group cursor-default relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(74,176,224,0.015)] pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(80,168,216,0.015)] pointer-events-none" />
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[rgba(74,176,224,0.06)] text-[rgba(74,176,224,0.7)] mb-5 group-hover:bg-[rgba(74,176,224,0.1)] group-hover:scale-110 group-hover:rounded-xl transition-all duration-500">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[rgba(80,168,216,0.06)] text-[rgba(80,168,216,0.7)] mb-5 group-hover:bg-[rgba(80,168,216,0.1)] group-hover:scale-110 group-hover:rounded-xl transition-all duration-500">
                   <item.icon size={24} />
                 </div>
                 <h3 className="text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2 font-medium">
@@ -98,7 +98,7 @@ export default function EventInfo() {
             rel="noopener noreferrer"
             className="btn-secondary group inline-flex"
           >
-            <IoLocationOutline size={16} className="group-hover:text-[rgba(74,176,224,0.6)] transition-colors" />
+            <IoLocationOutline size={16} className="group-hover:text-[rgba(80,168,216,0.6)] transition-colors" />
             <span>Ver Ubicación</span>
           </a>
         </motion.div>

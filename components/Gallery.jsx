@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { IoImagesOutline } from 'react-icons/io5'
-import eventConfig from '@/config/event'
+import eventConfig from '../config/event'
 
 export default function Gallery() {
   const hasGoogleUrl = eventConfig.gallery.googlePhotosUrl && eventConfig.gallery.googlePhotosUrl.length > 0
@@ -52,7 +52,7 @@ export default function Gallery() {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
             className="glass-card p-14 md:p-16 text-center max-w-lg mx-auto relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(74,176,224,0.01)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(80,168,216,0.01)] to-transparent pointer-events-none" />
             <div className="relative">
               <div className="text-5xl mb-5 opacity-30">📸</div>
               <h3 className="text-xl font-display font-bold text-white/60 mb-3">

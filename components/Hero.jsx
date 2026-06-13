@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { IoChevronDown } from 'react-icons/io5'
-import eventConfig from '@/config/event'
+import eventConfig from '../config/event'
 
 const containerVariants = {
   hidden: {},
@@ -59,21 +59,21 @@ export default function Hero() {
         <div
           className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(74,176,224,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(80,168,216,0.06) 0%, transparent 70%)',
             filter: 'blur(80px)',
           }}
         />
         <div
           className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(42,152,208,0.05) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(48,144,200,0.05) 0%, transparent 70%)',
             filter: 'blur(100px)',
           }}
         />
         <div
           className="absolute top-1/3 right-1/3 w-[300px] h-[300px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(232,200,74,0.03) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(232,200,74,0.04) 0%, transparent 60%)',
             filter: 'blur(60px)',
           }}
         />
@@ -108,16 +108,16 @@ export default function Hero() {
               <motion.div
                 className="w-6 h-[1px]"
                 style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(74,176,224,0.4))',
+                  background: 'linear-gradient(90deg, transparent, rgba(80,168,216,0.4))',
                 }}
               />
-              <span className="text-[rgba(74,176,224,0.5)] text-[11px] tracking-[0.4em] uppercase font-light">
+              <span className="text-[rgba(80,168,216,0.5)] text-[11px] tracking-[0.4em] uppercase font-light">
                 XV Años
               </span>
               <motion.div
                 className="w-6 h-[1px]"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(74,176,224,0.4), transparent)',
+                  background: 'linear-gradient(90deg, rgba(80,168,216,0.4), transparent)',
                 }}
               />
             </div>
@@ -140,7 +140,7 @@ export default function Hero() {
             variants={childVariants}
             className="w-[120px] h-[1px] my-6"
             style={{
-              background: 'linear-gradient(90deg, transparent, rgba(74,176,224,0.3), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(80,168,216,0.3), transparent)',
             }}
           />
 
@@ -160,14 +160,14 @@ export default function Hero() {
         onClick={scrollToCountdown}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
       >
-        <span className="text-[rgba(255,255,255,0.2)] text-[10px] tracking-[0.35em] uppercase group-hover:text-[rgba(74,176,224,0.5)] transition-all duration-500">
+        <span className="text-[rgba(255,255,255,0.2)] text-[10px] tracking-[0.35em] uppercase group-hover:text-[rgba(80,168,216,0.5)] transition-all duration-500">
           Descubre más
         </span>
         <motion.div
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <IoChevronDown className="text-lg text-[rgba(255,255,255,0.2)] group-hover:text-[rgba(74,176,224,0.5)] transition-all duration-500" />
+          <IoChevronDown className="text-lg text-[rgba(255,255,255,0.2)] group-hover:text-[rgba(80,168,216,0.5)] transition-all duration-500" />
         </motion.div>
       </motion.button>
     </motion.section>

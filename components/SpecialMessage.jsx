@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import eventConfig from '@/config/event'
+import eventConfig from '../config/event'
 
 export default function SpecialMessage() {
   return (
@@ -30,9 +30,9 @@ export default function SpecialMessage() {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
           className="glass-card p-9 md:p-14 relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(74,176,224,0.02)] via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(80,168,216,0.02)] via-transparent to-transparent pointer-events-none" />
 
-          <div className="absolute top-6 left-6 text-[rgba(232,200,74,0.06)] text-7xl font-serif leading-none select-none pointer-events-none">
+          <div className="absolute top-6 left-6 text-[rgba(232,200,74,0.08)] text-7xl font-serif leading-none select-none pointer-events-none">
             &ldquo;
           </div>
 

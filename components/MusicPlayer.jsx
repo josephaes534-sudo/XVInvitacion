@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { IoMusicalNotes, IoVolumeMute } from 'react-icons/io5'
-import eventConfig from '@/config/event'
+import eventConfig from '../config/event'
 
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -61,13 +61,13 @@ export default function MusicPlayer() {
       className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 cursor-pointer"
       style={{
         background: isPlaying
-          ? 'linear-gradient(135deg, rgba(74,176,224,0.12), rgba(42,152,208,0.06))'
+          ? 'linear-gradient(135deg, rgba(80,168,216,0.12), rgba(48,144,200,0.06))'
           : 'rgba(255,255,255,0.03)',
         border: isPlaying
-          ? '1px solid rgba(74,176,224,0.15)'
+          ? '1px solid rgba(80,168,216,0.15)'
           : '1px solid rgba(255,255,255,0.06)',
         boxShadow: isPlaying
-          ? '0 0 30px rgba(74,176,224,0.08), 0 4px 20px rgba(0,0,0,0.2)'
+          ? '0 0 30px rgba(80,168,216,0.08), 0 4px 20px rgba(0,0,0,0.2)'
           : '0 4px 20px rgba(0,0,0,0.1)',
       }}
       title={isPlaying ? 'Pausar música' : 'Reproducir música'}
@@ -85,7 +85,7 @@ export default function MusicPlayer() {
               <motion.span
                 key={i}
                 className="w-[2px] rounded-full"
-                style={{ background: 'rgba(74,176,224,0.6)' }}
+                style={{ background: 'rgba(80,168,216,0.6)' }}
                 animate={{
                   height: [8, 14 + i * 4, 8],
                 }}

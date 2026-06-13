@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import eventConfig from '@/config/event'
+import eventConfig from '../config/event'
 
 const colors = [
   { hex: '#f5f0e8', name: 'Beige / Crema' },
