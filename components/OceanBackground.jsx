@@ -38,10 +38,10 @@ export default function OceanBackground() {
         y: randomBetween(0.05, 0.95),
         r: randomBetween(100, 300),
         r2: randomBetween(60, 180),
-        hue: randomBetween(200, 230),
-        sat: randomBetween(40, 70),
-        light: randomBetween(25, 45),
-        opacity: randomBetween(0.015, 0.035),
+        hue: randomBetween(165, 195),
+        sat: randomBetween(25, 45),
+        light: randomBetween(55, 75),
+        opacity: randomBetween(0.025, 0.05),
         speed: randomBetween(0.001, 0.003),
         phase: randomBetween(0, Math.PI * 2),
       }))
@@ -54,9 +54,9 @@ export default function OceanBackground() {
         baseY: randomBetween(0.55, 0.88),
         height: randomBetween(30, 80),
         width: randomBetween(20, 50),
-        hue: randomBetween(195, 230),
-        sat: randomBetween(35, 60),
-        light: randomBetween(30, 50),
+        hue: randomBetween(165, 195),
+        sat: randomBetween(25, 45),
+        light: randomBetween(55, 70),
         opacity: randomBetween(0.08, 0.18),
         phase: randomBetween(0, Math.PI * 2),
         swaySpeed: randomBetween(0.0015, 0.0035),
@@ -77,8 +77,8 @@ export default function OceanBackground() {
         wobble: randomBetween(0, Math.PI * 2),
         wobbleSpeed: randomBetween(0.004, 0.01),
         wobbleAmp: randomBetween(0.2, 0.5),
-        opacity: randomBetween(0.02, 0.06),
-        hue: randomBetween(195, 220),
+        opacity: randomBetween(0.03, 0.08),
+        hue: randomBetween(170, 195),
       }))
     }
 
@@ -93,7 +93,7 @@ export default function OceanBackground() {
         vy: randomBetween(-0.015, -0.003),
         pulse: randomBetween(0, Math.PI * 2),
         pulseSpeed: randomBetween(0.002, 0.006),
-        hue: randomBetween(195, 230),
+        hue: randomBetween(165, 200),
         isGlow: Math.random() > 0.9,
       }))
     }
@@ -106,9 +106,9 @@ export default function OceanBackground() {
         size: randomBetween(5, 12),
         speed: randomBetween(0.08, 0.2),
         opacity: randomBetween(0.015, 0.035),
-        hue: randomBetween(190, 220),
-        sat: randomBetween(30, 50),
-        light: randomBetween(50, 70),
+        hue: randomBetween(165, 195),
+        sat: randomBetween(20, 40),
+        light: randomBetween(60, 80),
         phase: randomBetween(0, Math.PI * 2),
         direction: Math.random() > 0.5 ? 1 : -1,
         tailPhase: randomBetween(0, Math.PI * 2),
@@ -329,11 +329,11 @@ export default function OceanBackground() {
     const drawDepthOverlay = () => {
       ctx.save()
       const grad = ctx.createLinearGradient(0, 0, 0, canvas.height)
-      grad.addColorStop(0, 'rgba(0, 0, 30, 0)')
-      grad.addColorStop(0.15, 'rgba(0, 0, 30, 0.015)')
-      grad.addColorStop(0.5, 'rgba(0, 0, 30, 0)')
-      grad.addColorStop(0.8, 'rgba(0, 0, 30, 0.015)')
-      grad.addColorStop(1, 'rgba(0, 0, 30, 0.04)')
+      grad.addColorStop(0, 'rgba(20, 50, 48, 0)')
+      grad.addColorStop(0.15, 'rgba(20, 50, 48, 0.015)')
+      grad.addColorStop(0.5, 'rgba(20, 50, 48, 0)')
+      grad.addColorStop(0.8, 'rgba(20, 50, 48, 0.015)')
+      grad.addColorStop(1, 'rgba(20, 50, 48, 0.04)')
       ctx.fillStyle = grad
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.restore()
@@ -388,17 +388,17 @@ export default function OceanBackground() {
         style={{
           zIndex: 0,
           background: `
-            radial-gradient(ellipse at 15% 30%, rgba(0, 60, 140, 0.07) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 20%, rgba(30, 120, 200, 0.05) 0%, transparent 45%),
-            radial-gradient(ellipse at 50% 80%, rgba(0, 40, 110, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 50%, rgba(20, 90, 170, 0.04) 0%, transparent 40%),
-            radial-gradient(ellipse at 25% 80%, rgba(0, 50, 120, 0.04) 0%, transparent 35%),
+            radial-gradient(ellipse at 15% 30%, rgba(100, 180, 175, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 20%, rgba(130, 200, 195, 0.05) 0%, transparent 45%),
+            radial-gradient(ellipse at 50% 80%, rgba(80, 160, 155, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 50%, rgba(110, 190, 185, 0.04) 0%, transparent 40%),
+            radial-gradient(ellipse at 25% 80%, rgba(90, 170, 165, 0.04) 0%, transparent 35%),
             linear-gradient(180deg,
-              rgba(0, 0, 30, 0) 0%,
-              rgba(0, 30, 90, 0.02) 20%,
-              rgba(0, 20, 70, 0.02) 50%,
-              rgba(0, 30, 90, 0.015) 75%,
-              rgba(0, 0, 30, 0.04) 100%
+              rgba(20, 50, 48, 0) 0%,
+              rgba(30, 60, 58, 0.02) 20%,
+              rgba(40, 70, 68, 0.02) 50%,
+              rgba(30, 60, 58, 0.015) 75%,
+              rgba(20, 50, 48, 0.04) 100%
             )
           `,
         }}

@@ -5,14 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Inter:wght@200;300;400;500;600;700;800&family=Great+Vibes&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 :root {
-  --electric: #5ab8e8;
-  --electric-dim: rgba(90, 184, 232, 0.15);
-  --electric-glow: rgba(90, 184, 232, 0.25);
-  --navy-deep: #000030;
-  --navy: #000060;
-  --navy-mid: #000080;
-  --navy-light: #0a3a7a;
-  --royal: #1a4a8a;
+  --electric: #8ad4d0;
+  --electric-dim: rgba(138, 212, 208, 0.2);
+  --electric-glow: rgba(138, 212, 208, 0.3);
+  --navy-deep: #2a4a48;
+  --navy: #3a5a58;
+  --navy-mid: #5a7a78;
+  --navy-light: #7a9a98;
+  --royal: #6a8a88;
   --gold: #f0d080;
   --gold-dim: rgba(240, 208, 128, 0.15);
   --pearl: rgba(255, 255, 255, 0.04);

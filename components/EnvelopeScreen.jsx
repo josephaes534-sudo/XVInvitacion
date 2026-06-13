@@ -22,7 +22,7 @@ export default function EnvelopeScreen({ onOpen }) {
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none"
           style={{
-            background: 'linear-gradient(170deg, #000030 0%, #000060 25%, #000080 45%, #000060 65%, #000050 85%, #000030 100%)',
+            background: 'linear-gradient(170deg, #1a3a38 0%, #2a4a48 25%, #3a5a58 45%, #2a4a48 65%, #1a3a38 85%, #0a1a18 100%)',
           }}
         >
           <div className="absolute inset-0 pointer-events-none">
@@ -30,13 +30,13 @@ export default function EnvelopeScreen({ onOpen }) {
               animate={{ opacity: [0.04, 0.08, 0.04] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(60,160,220,0.4), transparent 70%)', filter: 'blur(60px)' }}
+              style={{ background: 'radial-gradient(circle, rgba(100,200,195,0.35), transparent 70%)', filter: 'blur(60px)' }}
             />
             <motion.div
               animate={{ opacity: [0.03, 0.06, 0.03] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
               className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(30,100,180,0.3), transparent 70%)', filter: 'blur(80px)' }}
+              style={{ background: 'radial-gradient(circle, rgba(80,170,165,0.3), transparent 70%)', filter: 'blur(80px)' }}
             />
           </div>
 
@@ -128,9 +128,9 @@ export default function EnvelopeScreen({ onOpen }) {
                 onClick={handleOpen}
                 className="mt-8 px-10 py-3.5 rounded-full font-semibold text-sm uppercase tracking-[0.3em] transition-all duration-500"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(60,160,220,0.12), rgba(30,100,180,0.08))',
-                  border: '1px solid rgba(60,160,220,0.2)',
-                  color: 'rgba(180,220,255,0.9)',
+                  background: 'linear-gradient(135deg, rgba(100,200,195,0.12), rgba(70,170,165,0.08))',
+                  border: '1px solid rgba(100,200,195,0.2)',
+                  color: 'rgba(200,245,240,0.9)',
                 }}
               >
                 Abrir Invitación
