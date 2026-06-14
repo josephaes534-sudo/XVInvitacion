@@ -39,9 +39,9 @@ export default function OceanBackground() {
         y: randomBetween(0.05, 0.95),
         r: randomBetween(100, 300),
         r2: randomBetween(60, 180),
-        hue: randomBetween(200, 225),
+        hue: randomBetween(170, 190),
         sat: randomBetween(25, 45),
-        light: randomBetween(55, 75),
+        light: randomBetween(45, 65),
         opacity: randomBetween(0.025, 0.05),
         speed: randomBetween(0.001, 0.003),
         phase: randomBetween(0, Math.PI * 2),
@@ -55,10 +55,10 @@ export default function OceanBackground() {
         baseY: randomBetween(0.55, 0.88),
         height: randomBetween(30, 80),
         width: randomBetween(20, 50),
-        hue: randomBetween(195, 220),
-        sat: randomBetween(25, 45),
-        light: randomBetween(55, 70),
-        opacity: randomBetween(0.08, 0.18),
+        hue: randomBetween(168, 188),
+        sat: randomBetween(18, 35),
+        light: randomBetween(45, 60),
+        opacity: randomBetween(0.06, 0.14),
         phase: randomBetween(0, Math.PI * 2),
         swaySpeed: randomBetween(0.0015, 0.0035),
         swayAmp: randomBetween(1.5, 4),
@@ -79,7 +79,7 @@ export default function OceanBackground() {
         wobbleSpeed: randomBetween(0.004, 0.01),
         wobbleAmp: randomBetween(0.2, 0.5),
         opacity: randomBetween(0.03, 0.08),
-        hue: randomBetween(200, 225),
+        hue: randomBetween(172, 190),
       }))
     }
 
@@ -94,7 +94,7 @@ export default function OceanBackground() {
         vy: randomBetween(-0.015, -0.003),
         pulse: randomBetween(0, Math.PI * 2),
         pulseSpeed: randomBetween(0.002, 0.006),
-        hue: randomBetween(200, 225),
+        hue: randomBetween(170, 190),
         isGlow: Math.random() > 0.9,
       }))
     }
@@ -106,10 +106,10 @@ export default function OceanBackground() {
         y: randomBetween(0.25, 0.75),
         size: randomBetween(5, 12),
         speed: randomBetween(0.08, 0.2),
-        opacity: randomBetween(0.02, 0.04),
-        hue: randomBetween(200, 215),
-        sat: randomBetween(20, 35),
-        light: randomBetween(65, 85),
+        opacity: randomBetween(0.015, 0.03),
+        hue: randomBetween(170, 185),
+        sat: randomBetween(15, 30),
+        light: randomBetween(60, 80),
         phase: randomBetween(0, Math.PI * 2),
         direction: Math.random() > 0.5 ? 1 : -1,
         tailPhase: randomBetween(0, Math.PI * 2),
@@ -124,10 +124,10 @@ export default function OceanBackground() {
         size: randomBetween(1, 3),
         pulse: randomBetween(0, Math.PI * 2),
         pulseSpeed: randomBetween(0.006, 0.018),
-        hue: randomBetween(43, 50),
-        sat: 85,
-        light: 75,
-        opacity: randomBetween(0.2, 0.5),
+        hue: randomBetween(40, 48),
+        sat: 70,
+        light: 78,
+        opacity: randomBetween(0.2, 0.45),
       }))
     }
 
@@ -191,7 +191,7 @@ export default function OceanBackground() {
           ctx.stroke()
 
           const grad = ctx.createRadialGradient(tipX, tipY, 0, tipX, tipY, c.width * 0.12)
-          grad.addColorStop(0, `hsla(${tipHue + 15}, 70%, 80%, ${o * 0.25})`)
+          grad.addColorStop(0, `hsla(${tipHue + 15}, 65%, 82%, ${o * 0.25})`)
           grad.addColorStop(1, 'transparent')
           ctx.fillStyle = grad
           ctx.beginPath()
@@ -245,7 +245,7 @@ export default function OceanBackground() {
         if (p.isGlow && !isMobile) {
           ctx.save()
           const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5)
-          grad.addColorStop(0, `hsla(${p.hue}, 60%, 80%, ${o * 0.1})`)
+          grad.addColorStop(0, `hsla(${p.hue}, 55%, 82%, ${o * 0.1})`)
           grad.addColorStop(1, 'transparent')
           ctx.fillStyle = grad
           ctx.beginPath()
@@ -257,7 +257,7 @@ export default function OceanBackground() {
         ctx.save()
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `hsla(${p.hue}, 40%, 75%, ${o})`
+        ctx.fillStyle = `hsla(${p.hue}, 35%, 75%, ${o})`
         ctx.fill()
         ctx.restore()
       }
@@ -307,7 +307,7 @@ export default function OceanBackground() {
 
         ctx.beginPath()
         ctx.arc(0.2, -0.04, 0.035, 0, Math.PI * 2)
-        ctx.fillStyle = `hsla(210, 80%, 90%, 0.5)`
+        ctx.fillStyle = `hsla(180, 70%, 92%, 0.5)`
         ctx.fill()
 
         ctx.restore()
@@ -327,8 +327,8 @@ export default function OceanBackground() {
         ctx.globalAlpha = 0.01 * pulse
 
         const grad = ctx.createLinearGradient(rx, 0, rx + rw * 0.3, rh)
-        grad.addColorStop(0, `hsla(210, 70%, 90%, 0.025)`)
-        grad.addColorStop(0.4, `hsla(210, 50%, 80%, 0.012)`)
+        grad.addColorStop(0, `hsla(180, 55%, 90%, 0.025)`)
+        grad.addColorStop(0.4, `hsla(180, 40%, 82%, 0.012)`)
         grad.addColorStop(1, 'transparent')
         ctx.fillStyle = grad
         ctx.beginPath()
@@ -365,7 +365,7 @@ export default function OceanBackground() {
 
         ctx.beginPath()
         ctx.arc(sx, sy, size * 0.4, 0, Math.PI * 2)
-        ctx.fillStyle = `hsla(${s.hue}, ${s.sat + 10}%, ${s.light + 20}%, 0.95)`
+        ctx.fillStyle = `hsla(${s.hue}, ${s.sat + 10}%, ${s.light + 15}%, 0.95)`
         ctx.fill()
 
         ctx.restore()
@@ -375,11 +375,11 @@ export default function OceanBackground() {
     const drawDepthOverlay = () => {
       ctx.save()
       const grad = ctx.createLinearGradient(0, 0, 0, canvas.height)
-      grad.addColorStop(0, 'rgba(8, 38, 64, 0)')
-      grad.addColorStop(0.15, 'rgba(14, 56, 84, 0.015)')
-      grad.addColorStop(0.5, 'rgba(8, 38, 64, 0)')
-      grad.addColorStop(0.8, 'rgba(14, 56, 84, 0.015)')
-      grad.addColorStop(1, 'rgba(8, 38, 64, 0.04)')
+      grad.addColorStop(0, 'rgba(22, 56, 59, 0)')
+      grad.addColorStop(0.15, 'rgba(28, 75, 79, 0.015)')
+      grad.addColorStop(0.5, 'rgba(22, 56, 59, 0)')
+      grad.addColorStop(0.8, 'rgba(28, 75, 79, 0.015)')
+      grad.addColorStop(1, 'rgba(22, 56, 59, 0.04)')
       ctx.fillStyle = grad
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.restore()
@@ -436,17 +436,17 @@ export default function OceanBackground() {
         style={{
           zIndex: 0,
           background: `
-            radial-gradient(ellipse at 15% 30%, rgba(80, 160, 220, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 20%, rgba(90, 170, 230, 0.05) 0%, transparent 45%),
-            radial-gradient(ellipse at 50% 80%, rgba(60, 140, 200, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 50%, rgba(80, 150, 210, 0.04) 0%, transparent 40%),
-            radial-gradient(ellipse at 25% 80%, rgba(50, 130, 190, 0.04) 0%, transparent 35%),
+            radial-gradient(ellipse at 15% 30%, rgba(63, 163, 170, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 20%, rgba(89, 184, 190, 0.04) 0%, transparent 45%),
+            radial-gradient(ellipse at 50% 80%, rgba(41, 141, 148, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 50%, rgba(63, 163, 170, 0.03) 0%, transparent 40%),
+            radial-gradient(ellipse at 25% 80%, rgba(41, 141, 148, 0.03) 0%, transparent 35%),
             linear-gradient(180deg,
-              rgba(8, 38, 64, 0) 0%,
-              rgba(14, 56, 84, 0.02) 20%,
-              rgba(26, 74, 104, 0.02) 50%,
-              rgba(14, 56, 84, 0.015) 75%,
-              rgba(8, 38, 64, 0.04) 100%
+              rgba(22, 56, 59, 0) 0%,
+              rgba(28, 75, 79, 0.02) 20%,
+              rgba(35, 97, 102, 0.02) 50%,
+              rgba(28, 75, 79, 0.015) 75%,
+              rgba(22, 56, 59, 0.04) 100%
             )
           `,
         }}
