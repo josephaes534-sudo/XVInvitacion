@@ -64,19 +64,19 @@ export default function EventInfo() {
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
               className="glass-card p-7 md:p-9 text-center group cursor-default relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(63,163,170,0.015)] pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(41,141,148,0.015)] pointer-events-none" />
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[rgba(63,163,170,0.06)] text-[rgba(63,163,170,0.7)] mb-5 group-hover:bg-[rgba(63,163,170,0.1)] group-hover:scale-110 group-hover:rounded-xl transition-all duration-500">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[rgba(41,141,148,0.06)] text-[rgba(41,141,148,0.7)] mb-5 group-hover:bg-[rgba(41,141,148,0.1)] group-hover:scale-110 group-hover:rounded-xl transition-all duration-500">
                   <item.icon size={24} />
                 </div>
-                <h3 className="text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2 font-medium">
+                <h3 className="text-white/75 text-[11px] uppercase tracking-[0.25em] mb-2 font-medium">
                   {item.label}
                 </h3>
                 <p className="text-white font-display text-lg md:text-xl font-semibold tracking-tight">
                   {item.value}
                 </p>
                 {item.sub && (
-                  <p className="text-[rgba(255,255,255,0.2)] text-sm mt-1.5 font-light">
+                  <p className="text-white/75 text-sm mt-1.5 font-light">
                     {item.sub}
                   </p>
                 )}
@@ -93,12 +93,12 @@ export default function EventInfo() {
           className="mt-10 text-center"
         >
           <a
-            href="https://maps.google.com"
+            href="https://maps.app.goo.gl/F2UBnQ64oerwfiA66?g_st=aw"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary group inline-flex"
           >
-            <IoLocationOutline size={16} className="group-hover:text-[rgba(63,163,170,0.6)] transition-colors" />
+            <IoLocationOutline size={16} className="group-hover:text-[rgba(41,141,148,0.6)] transition-colors" />
             <span>Ver Ubicación</span>
           </a>
         </motion.div>

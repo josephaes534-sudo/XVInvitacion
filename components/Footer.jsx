@@ -23,7 +23,7 @@ export default function Footer() {
             <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
               ¡Gracias por ser parte!
             </h3>
-            <p className="text-[rgba(255,255,255,0.2)] text-sm max-w-sm mx-auto font-light">
+            <p className="text-white/75 text-sm max-w-sm mx-auto font-light">
               Tu presencia hará de este día un recuerdo inolvidable
             </p>
           </div>
@@ -31,8 +31,8 @@ export default function Footer() {
           <p className="text-[rgba(255,255,255,0.1)] text-xs mb-2 tracking-wider">
             {eventConfig.heroName}&apos;s {eventConfig.heroSubtitle}
           </p>
-          <p className="text-[rgba(255,255,255,0.06)] text-[11px] flex items-center justify-center gap-1.5">
-            Hecho con <IoHeart size={11} style={{ color: 'rgba(63, 163, 170, 0.3)' }} /> para Hallie Aes
+          <p className="text-white/50 text-[11px] flex items-center justify-center gap-1.5">
+            Hecho con <IoHeart size={11} style={{ color: 'rgba(41, 141, 148, 0.3)' }} /> para Hallie Aes
           </p>
 
           <motion.button
@@ -44,7 +44,7 @@ export default function Footer() {
             <IoArrowUp
               size={16}
               className="group-hover:-translate-y-1 transition-transform duration-300"
-              style={{ color: 'rgba(63, 163, 170, 0.5)' }}
+              style={{ color: 'rgba(41, 141, 148, 0.5)' }}
             />
           </motion.button>
         </motion.div>

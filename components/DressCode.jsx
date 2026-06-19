@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import eventConfig from '../config/event'
 
 const colors = [
-  { hex: '#f5f0e8', name: 'Beige / Crema' },
-  { hex: '#e8d5c4', name: 'Camel' },
-  { hex: '#f0e6d3', name: 'Champagne' },
-  { hex: '#c0c0c0', name: 'Plateado' },
-  { hex: '#ffd700', name: 'Dorado' },
+  { hex: '#D96B4A', name: 'Coral' },
+  { hex: '#A8B8A0', name: 'Verde Salvia' },
+  { hex: '#C9DDE0', name: 'Azul Perla' },
+  { hex: '#EFE4CF', name: 'Marfil' },
+  { hex: '#E7D59B', name: 'Beige' },
 ]
 
 export default function DressCode() {
@@ -29,7 +29,7 @@ export default function DressCode() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
             {eventConfig.dressCode.title}
           </h2>
-          <p className="text-[rgba(255,255,255,0.25)] max-w-lg mx-auto font-light leading-relaxed text-sm md:text-base">
+          <p className="text-white/75 max-w-lg mx-auto font-light leading-relaxed text-sm md:text-base">
             {eventConfig.dressCode.description}
           </p>
         </motion.div>
@@ -43,9 +43,12 @@ export default function DressCode() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(255,255,255,0.02)] to-transparent pointer-events-none" />
           <div className="relative">
-            <p className="text-[rgba(255,255,255,0.15)] text-[10px] uppercase tracking-[0.3em] text-center mb-8 font-medium">
+            <p className="text-white/50 text-[10px] uppercase tracking-[0.3em] text-center mb-6 font-medium">
               {eventConfig.dressCode.note}
             </p>
+            <h3 className="text-white/80 text-lg md:text-xl font-display font-semibold text-center mb-8">
+              Colores sugeridos
+            </h3>
             <div className="flex flex-wrap justify-center gap-6 md:gap-8">
               {colors.map((color, index) => (
                 <motion.div
@@ -72,7 +75,7 @@ export default function DressCode() {
                       />
                     </motion.div>
                   </div>
-                  <span className="text-[rgba(255,255,255,0.25)] text-[11px] font-medium tracking-wider">
+                  <span className="text-white/75 text-[11px] font-medium tracking-wider">
                     {color.name}
                   </span>
                 </motion.div>

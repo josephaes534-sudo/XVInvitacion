@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { IoCheckmarkCircle, IoPersonOutline, IoPeopleOutline, IoChatbubbleOutline } from 'react-icons/io5'
 import eventConfig from '../config/event'
@@ -8,39 +8,70 @@ import eventConfig from '../config/event'
 export default function RSVP() {
   const [formData, setFormData] = useState({
     name: '',
+    phone: '',
     guests: '1',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    const confirmed = localStorage.getItem('hallie_rsvp_confirmed')
+    if (confirmed) {
+      setSubmitted(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    const iframe = document.createElement("iframe")
+    iframe.name = "hidden_iframe"
+    iframe.style.display = "none"
+    document.body.appendChild(iframe)
+    return () => {
+      document.body.removeChild(iframe)
+    }
+  }, [])
+
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e) => {
+  const enviarConfirmacion = (e) => {
     e.preventDefault()
     setLoading(true)
-    try {
-      if (eventConfig.rsvp.formspreeEndpoint) {
-        const params = new URLSearchParams()
-        params.append('name', formData.name)
-        params.append('guests', formData.guests)
-        params.append('message', formData.message)
-        await fetch(eventConfig.rsvp.formspreeEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: params.toString(),
-        })
-      }
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setSubmitted(true)
-    } catch {
-      setSubmitted(true)
-    } finally {
-      setLoading(false)
+
+    const form = document.createElement("form")
+    form.method = "POST"
+    form.action = "https://docs.google.com/forms/d/e/1FAIpQLScP4yLHK3HexMlGo4repFJmZfzTmn8PL1-zS2rkO_OM7ivZuQ/formResponse"
+    form.target = "hidden_iframe"
+
+    const data = {
+      "entry.2001389412": formData.name,
+      "entry.908209112": formData.phone,
+      "entry.346994890": formData.guests,
+      "entry.1050979229": formData.message,
     }
+
+    Object.entries(data).forEach(([key, value]) => {
+      const input = document.createElement("input")
+      input.type = "hidden"
+      input.name = key
+      input.value = value
+      form.appendChild(input)
+    })
+
+    document.body.appendChild(form)
+    form.submit()
+
+    localStorage.setItem("hallie_rsvp_confirmed", "true")
+
+    setTimeout(() => {
+      setSubmitted(true)
+      setLoading(false)
+    }, 1200)
   }
+
+
 
   if (submitted) {
     return (
@@ -54,21 +85,33 @@ export default function RSVP() {
             transition={{ type: 'spring', duration: 0.8 }}
             className="glass-card p-12 md:p-14 text-center relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(63,163,170,0.02)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.02)] to-transparent pointer-events-none" />
             <div className="relative">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', duration: 0.6, delay: 0.2 }}
               >
-                <IoCheckmarkCircle className="text-6xl mx-auto mb-6" style={{ color: 'rgba(63, 163, 170, 0.7)' }} />
+                <IoCheckmarkCircle className="text-6xl mx-auto mb-6" style={{ color: 'rgba(41, 141, 148, 0.7)' }} />
               </motion.div>
               <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
                 ¡Gracias por confirmar!
               </h3>
               <p className="text-[rgba(255,255,255,0.3)] leading-relaxed font-light">
-                Hallie está muy emocionada de que la acompañes en este día tan especial.
-                Te esperamos con mucho cariño.
+                Tu confirmación ha sido registrada correctamente ✨
+                <br /><br />
+                Gracias por acompañar a Hallie en este día tan especial.
+                <br /><br />
+                Si tienes alguna duda o problema con tu confirmación,
+                puedes comunicarte directamente por WhatsApp:
+                <br /><br />
+                <a
+                  href="https://wa.me/529384054474"
+                  target="_blank"
+                  className="text-white underline"
+                >
+                  +52 938 405 4474
+                </a>
               </p>
               <div className="section-divider mt-6" />
             </div>
@@ -103,12 +146,12 @@ export default function RSVP() {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
         >
-          <form onSubmit={handleSubmit} className="glass-card p-8 md:p-10 space-y-6 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(63,163,170,0.01)] to-transparent pointer-events-none" />
+          <form onSubmit={enviarConfirmacion} className="glass-card p-8 md:p-10 space-y-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.01)] to-transparent pointer-events-none" />
             <div className="relative space-y-6">
               <div>
-                <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoPersonOutline size={14} style={{ color: 'rgba(63, 163, 170, 0.5)' }} />
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  <IoPersonOutline size={14} />
                   Tu Nombre
                 </label>
                 <input
@@ -123,8 +166,23 @@ export default function RSVP() {
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoPeopleOutline size={14} style={{ color: 'rgba(63, 163, 170, 0.5)' }} />
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  📱 Número de celular
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="Ej. +52 999 000 0000"
+                  className="input-premium"
+                />
+              </div>
+
+              <div>
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  <IoPeopleOutline size={14} />
                   Número de Invitados
                 </label>
                 <div className="relative">
@@ -134,21 +192,21 @@ export default function RSVP() {
                     onChange={handleChange}
                     className="select-premium"
                   >
-                    {[1, 2, 3, 4, 5].map((n) => (
-                      <option key={n} value={n} className="bg-[#0a1628]">
+                   {[1].map((n) => (
+                      <option key={n} value={n} className="bg-[#123B63]">
                         {n} {n === 1 ? 'Invitado' : 'Invitados'}
                       </option>
                     ))}
                   </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[rgba(255,255,255,0.15)]">
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/60">
                     ▾
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoChatbubbleOutline size={14} style={{ color: 'rgba(63, 163, 170, 0.5)' }} />
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  <IoChatbubbleOutline size={14} />
                   Mensaje para Hallie
                 </label>
                 <textarea
@@ -160,7 +218,7 @@ export default function RSVP() {
                   maxLength={500}
                   className="input-premium resize-none"
                 />
-                <p className="text-[rgba(255,255,255,0.08)] text-xs text-right mt-1.5">
+                <p className="text-white/50 text-xs text-right mt-1.5">
                   {formData.message.length}/500
                 </p>
               </div>
@@ -170,7 +228,7 @@ export default function RSVP() {
                 disabled={loading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-primary w-full"
+                className="rsvp-btn w-full"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -179,7 +237,7 @@ export default function RSVP() {
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                       className="w-4 h-4 border-2 rounded-full inline-block"
                       style={{
-                        borderColor: 'rgba(63,163,170,0.6)',
+                        borderColor: 'rgba(255,255,255,0.6)',
                         borderTopColor: 'transparent',
                       }}
                     />
@@ -190,19 +248,9 @@ export default function RSVP() {
                 )}
               </motion.button>
 
-              {eventConfig.rsvp.phone && (
-                <p className="text-center text-[rgba(255,255,255,0.12)] text-xs">
-                  O confirma vía WhatsApp:{' '}
-                  <a
-                    href={`https://wa.me/${eventConfig.rsvp.phone.replace(/[^0-9]/g, '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[rgba(63,163,170,0.4)] hover:text-[rgba(63,163,170,0.7)] transition-colors"
-                  >
-                    {eventConfig.rsvp.phone}
-                  </a>
-                </p>
-              )}
+              <p className="text-center text-white/60 text-xs">
+                Tu confirmación se guardará directamente
+              </p>
             </div>
           </form>
         </motion.div>

@@ -28,21 +28,30 @@ export default function Gallery() {
 
         {hasGoogleUrl ? (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center"
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            className="glass-card p-10 md:p-12 text-center max-w-lg mx-auto relative overflow-hidden"
           >
-            <a
-              href={eventConfig.gallery.googlePhotosUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex"
-            >
-              <IoImagesOutline size={16} />
-              <span>Ver Google Photos</span>
-            </a>
+            <div className="relative">
+              <div className="text-5xl mb-5 opacity-40">📸</div>
+              <h3 className="text-xl font-display font-bold text-white mb-2">
+                Álbum de Fotos
+              </h3>
+              <p className="text-white/75 text-sm mb-8 font-light max-w-xs mx-auto">
+                ¿Tomaste fotos? Súbelas aquí para después compartirlas
+              </p>
+              <a
+                href={eventConfig.gallery.googlePhotosUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rsvp-btn inline-flex"
+              >
+                <IoImagesOutline size={16} />
+                <span>Ver Google Photos</span>
+              </a>
+            </div>
           </motion.div>
         ) : (
           <motion.div
@@ -52,13 +61,13 @@ export default function Gallery() {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
             className="glass-card p-14 md:p-16 text-center max-w-lg mx-auto relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(63,163,170,0.01)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.01)] to-transparent pointer-events-none" />
             <div className="relative">
               <div className="text-5xl mb-5 opacity-30">📸</div>
               <h3 className="text-xl font-display font-bold text-white/60 mb-3">
                 Galería de Fotos
               </h3>
-              <p className="text-[rgba(255,255,255,0.2)] text-sm leading-relaxed font-light">
+              <p className="text-white/75 text-sm leading-relaxed font-light">
                 Las fotos estarán disponibles pronto.
                 <br />
                 Conecta tu álbum de Google Photos.

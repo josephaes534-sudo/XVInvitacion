@@ -30,7 +30,7 @@ export default function SpecialMessage() {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
           className="glass-card p-9 md:p-14 relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(63,163,170,0.02)] via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(41,141,148,0.02)] via-transparent to-transparent pointer-events-none" />
 
           <div className="absolute top-6 left-6 text-[rgba(228,199,107,0.08)] text-7xl font-serif leading-none select-none pointer-events-none">
             &ldquo;
@@ -46,6 +46,19 @@ export default function SpecialMessage() {
             >
               &ldquo;{eventConfig.specialMessage.content}&rdquo;
             </motion.p>
+
+            {eventConfig.specialMessage.highlight && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-center mt-6 text-lg md:text-xl font-bold tracking-wide"
+                style={{ color: 'rgba(228, 199, 107, 0.8)' }}
+              >
+                {eventConfig.specialMessage.highlight}
+              </motion.p>
+            )}
 
             <motion.div
               initial={{ opacity: 0, scaleX: 0 }}

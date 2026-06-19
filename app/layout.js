@@ -1,11 +1,12 @@
 import './globals.css'
+import eventConfig from '../config/event'
 
 export const metadata = {
-  title: "Hallie's Pool Party — XV Años",
-  description: 'Invitación digital premium para la Pool Party de Hallie. Acompáñanos a celebrar sus 15 años.',
+  title: `Hallie's ${eventConfig.themeName} — XV Años`,
+  description: `Invitación digital premium para el ${eventConfig.themeName} de Hallie. Acompáñanos a celebrar sus 15 años.`,
   openGraph: {
-    title: "Hallie's Pool Party — XV Años",
-    description: 'Invitación digital premium para la Pool Party de Hallie.',
+    title: `Hallie's ${eventConfig.themeName} — XV Años`,
+    description: `Invitación digital premium para el ${eventConfig.themeName} de Hallie.`,
     type: 'website',
   },
 }
@@ -15,7 +16,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#16383B',
+  themeColor: '#07213f',
 }
 
 export default function RootLayout({ children }) {

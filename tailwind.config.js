@@ -1,37 +1,59 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,jsx}', './components/**/*.{js,jsx}', './config/**/*.{js,jsx}'],
+  content: [
+    "./app/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+  ],
+
   theme: {
     extend: {
+
       colors: {
-        deep: {
-          700: '#236166',
-          800: '#1C4B4F',
-          900: '#16383B',
+
+        ocean: {
+          900: "#123B63",
+          800: "#1B4E7A",
+          700: "#2D6F9E",
+          600: "#3E8FBD",
+          500: "#57AEDD",
+          400: "#7BC8EA",
+          300: "#9DDCF2",
+          200: "#BFEAF7",
+          100: "#E2F7FB",
         },
+
         primary: {
-          100: '#C9F0F1',
-          200: '#A2E0E2',
-          300: '#7CCDD1',
-          400: '#59B8BE',
-          500: '#3FA3AA',
-          600: '#298D94',
+          DEFAULT: "#298D94",
         },
-        glow: {
-          50: '#E8FCFC',
-        },
+
         gold: {
-          200: '#FAEDC5',
-          300: '#F0DA93',
-          400: '#E4C76B',
+          DEFAULT: "#F8D86A",
+          500: "#D4AF37",
+          400: "#E4C76B",
+          300: "#F2D88D",
+          200: "#F8E8B9",
         },
+        goldLight: "#FFE89A",
+        oceanBlue: "#0D3B66",
+
+        hallie: {
+          coral: "#D96B4A",
+          sage: "#A8B8A0",
+          aqua: "#C9DDE0",
+          ivory: "#EFE4CF",
+          gold: "#E7D59B",
+        },
+
       },
+
       fontFamily: {
         display: ['Playfair Display', 'serif'],
         sans: ['Inter', 'sans-serif'],
         script: ['Great Vibes', 'cursive'],
       },
+
     },
   },
+
   plugins: [],
 }

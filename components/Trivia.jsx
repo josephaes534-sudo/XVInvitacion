@@ -6,13 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 const questions = [
   {
     question: '¿Cuál es la caricatura favorita de Hallie?',
-    options: ['Snoopy', 'Mickey Mouse', 'Hello Kitty', 'Pokémon'],
+    options: ['Snoopy', 'Minion', 'Olaf', 'Peabody'],
     correct: 0,
   },
   {
     question: '¿Cuál es su color favorito?',
     options: ['Azul', 'Morado', 'Rosa', 'Verde'],
-    correct: 1,
+    correct: 0,
   },
   {
     question: '¿Cuál es el país que sueña visitar?',
@@ -21,13 +21,13 @@ const questions = [
   },
   {
     question: '¿Quién es su celebrity crush?',
-    options: ['Timothée Chalamet', 'Jacob Elordi', 'Tom Holland', 'Harry Styles'],
-    correct: 1,
+    options: ['Henry Cavill', 'Zac Efron', 'Jacob Elordi', 'Tom Holland'],
+    correct: 0,
   },
   {
     question: '¿Qué describe mejor a Hallie?',
-    options: ['Deportista', 'Creativa', 'Tímida', 'Sería'],
-    correct: 1,
+    options: ['Sería', 'Enojona', 'Alegre', 'Traviesa'],
+    correct: 3,
   },
 ]
 
@@ -86,7 +86,7 @@ export default function Trivia() {
             transition={{ type: 'spring', duration: 0.8 }}
             className="glass-card p-10 md:p-14 text-center relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(63,163,170,0.02)] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.02)] to-transparent pointer-events-none" />
             <div className="relative">
               <div className="text-5xl mb-6">✨</div>
               <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
@@ -94,7 +94,7 @@ export default function Trivia() {
               </h3>
               <div
                 className="text-7xl md:text-8xl font-display font-bold mb-4 text-glow-soft"
-                style={{ color: 'rgba(63, 163, 170, 0.9)' }}
+                style={{ color: 'rgba(41, 141, 148, 0.9)' }}
               >
                 {score}/{questions.length}
               </div>
@@ -103,16 +103,16 @@ export default function Trivia() {
               </p>
               <div className="flex justify-center gap-4 mb-8">
                 <div className="glass-card px-7 py-4 text-center min-w-[120px]">
-                  <p className="text-2xl font-bold" style={{ color: 'rgba(63, 163, 170, 0.9)' }}>
+                  <p className="text-2xl font-bold" style={{ color: 'rgba(41, 141, 148, 0.9)' }}>
                     {score}
                   </p>
-                  <p className="text-[rgba(255,255,255,0.2)] text-[10px] uppercase tracking-[0.2em] mt-1">Correctas</p>
+                  <p className="text-white/75 text-[10px] uppercase tracking-[0.2em] mt-1">Correctas</p>
                 </div>
                 <div className="glass-card px-7 py-4 text-center min-w-[120px]">
                   <p className="text-2xl font-bold" style={{ color: 'rgba(255, 100, 100, 0.8)' }}>
                     {wrongAnswers}
                   </p>
-                  <p className="text-[rgba(255,255,255,0.2)] text-[10px] uppercase tracking-[0.2em] mt-1">Incorrectas</p>
+                  <p className="text-white/75 text-[10px] uppercase tracking-[0.2em] mt-1">Incorrectas</p>
                 </div>
               </div>
               <button onClick={restart} className="btn-secondary">
@@ -142,7 +142,7 @@ export default function Trivia() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-3">
             ¿Qué tanto conoces a Hallie?
           </h2>
-          <p className="text-[rgba(255,255,255,0.2)] text-sm">
+          <p className="text-white/75 text-sm">
             Pregunta {current + 1} de {questions.length}
           </p>
         </motion.div>
@@ -151,7 +151,7 @@ export default function Trivia() {
           <motion.div
             className="h-full rounded-full"
             style={{
-              background: 'linear-gradient(90deg, rgba(63,163,170,0.4), rgba(63,163,170,0.8))',
+              background: 'linear-gradient(90deg, rgba(41,141,148,0.4), rgba(41,141,148,0.8))',
             }}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -167,15 +167,14 @@ export default function Trivia() {
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="glass-card p-8 md:p-10 mb-6 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-[rgba(63,163,170,0.01)] to-transparent pointer-events-none" />
+            <div className="p-8 md:p-10 mb-6 relative overflow-hidden bg-[#0d3b66]/70 backdrop-blur-xl border border-white/15 shadow-2xl rounded-2xl">
               <div className="relative">
                 <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-8 text-center leading-relaxed">
                   {questions[current].question}
                 </h3>
                 <div className="space-y-3">
                   {questions[current].options.map((option, index) => {
-                    let optionStyle = 'bg-[rgba(255,255,255,0.02)] border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] cursor-pointer'
+                    let optionStyle = 'bg-[#1b5f97]/70 hover:bg-[#2874b6]/90 border border-white/10 text-white cursor-pointer'
 
                     if (selected !== null) {
                       if (index === questions[current].correct) {
@@ -241,9 +240,9 @@ export default function Trivia() {
                 width: index === current ? 24 : 8,
                 height: 8,
                 background: index === current
-                  ? 'rgba(63,163,170,0.6)'
+                  ? 'rgba(41,141,148,0.6)'
                   : index < current
-                    ? 'rgba(63,163,170,0.2)'
+                    ? 'rgba(41,141,148,0.2)'
                     : 'rgba(255,255,255,0.08)',
               }}
               layout

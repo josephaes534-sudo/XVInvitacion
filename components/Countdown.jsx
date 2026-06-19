@@ -44,12 +44,12 @@ function CountdownItem({ value, label }) {
       whileHover={{ scale: 1.05, y: -4 }}
       className="glass-card p-5 sm:p-7 md:p-9 text-center min-w-[85px] sm:min-w-[110px] md:min-w-[130px] relative overflow-hidden group"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(63,163,170,0.02)] pointer-events-none" />
-      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-[rgba(63,163,170,0.15)] to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(41,141,148,0.02)] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-[rgba(41,141,148,0.15)] to-transparent" />
       <motion.div
         className="absolute -inset-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(63,163,170,0.04), transparent 70%)',
+          background: 'radial-gradient(circle at 50% 50%, rgba(41,141,148,0.04), transparent 70%)',
           filter: 'blur(20px)',
         }}
       />
@@ -58,11 +58,11 @@ function CountdownItem({ value, label }) {
         initial={{ y: -15, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-glow-soft relative"
-        style={{ color: 'rgba(63, 163, 170, 0.9)' }}
+        style={{ color: 'rgba(41, 141, 148, 0.9)' }}
       >
         {formatted}
       </motion.span>
-      <span className="text-[rgba(255,255,255,0.25)] text-[10px] sm:text-xs uppercase tracking-[0.25em] mt-2 block font-medium relative">
+      <span className="text-white/75 text-[10px] sm:text-xs uppercase tracking-[0.25em] mt-2 block font-medium relative">
         {label}
       </span>
     </motion.div>
@@ -88,7 +88,7 @@ export default function CountdownSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-3">
             Faltan
           </h2>
-          <p className="text-[rgba(255,255,255,0.2)] text-sm md:text-base mb-14 max-w-md mx-auto font-light leading-relaxed">
+          <p className="text-white/75 text-sm md:text-base mb-14 max-w-md mx-auto font-light leading-relaxed">
             Cada segundo me acerca más a este día especial
           </p>
         </motion.div>
@@ -106,7 +106,7 @@ export default function CountdownSection() {
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', duration: 0.8 }}
                 className="text-3xl md:text-4xl font-display font-bold text-glow-soft"
-                style={{ color: 'rgba(63, 163, 170, 0.9)' }}
+                style={{ color: 'rgba(41, 141, 148, 0.9)' }}
               >
                 ¡Hoy es el gran día!
               </motion.p>
@@ -126,7 +126,7 @@ export default function CountdownSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-10 text-[rgba(255,255,255,0.12)] text-xs tracking-[0.2em] uppercase"
+          className="mt-10 text-white/60 text-xs tracking-[0.2em] uppercase"
         >
           {eventConfig.event.date}
         </motion.p>
